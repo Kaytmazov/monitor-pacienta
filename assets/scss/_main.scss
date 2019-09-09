@@ -28,34 +28,46 @@ big {
   font-size: 125%;
 }
 
+.site-header {
+  padding: 33px 0;
+  box-shadow: 0px 4px 10px rgba(16, 4, 50, 0.07);
+}
+
 .archive .site-header {
-	margin-bottom: 3.5em;
+  margin-bottom: 3.5em;
 }
 
-.site-title {
-	margin: .4375em 0 0;
-	font-size: 38px;
-	font-weight: bold;
-	line-height: 1.2;
-	color: #333332;
-}
+.navbar-brand {
+  padding-left: 0;
+  margin-right: 4rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 23px;
+  font-weight: bold;
+  line-height: inherit;
+  white-space: nowrap;
+  color: $navbar-light-brand-color;
 
-.site-title a {
-	text-decoration: none;
-	color: inherit;
-}
+  @include hover-focus {
+    color: $navbar-light-brand-hover-color;
+    text-decoration: none;
+  }
 
-.site-branding {
-	margin-bottom: 1.75em;
+  h1 {
+    margin: 0;
+    font-size: 23px;
+    font-weight: bold;
+    line-height: inherit;
+    color: $navbar-light-brand-color;
+  }
 }
 
 .site-description {
-	margin: .4375em 0 0;
-	font-size: 17px;
-	font-weight: inherit;
-	line-height: 1.4;
-	word-wrap: break-word;
-	color: #6c7781;
+  margin: .4375em 0 0;
+  font-size: 17px;
+  font-weight: inherit;
+  line-height: 1.4;
+  word-wrap: break-word;
+  color: #6c7781;
 }
 
 /*--------------------------------------------------------------
@@ -66,113 +78,91 @@ big {
 ## Menus
 --------------------------------------------------------------*/
 .main-navigation {
-	clear: both;
-	display: block;
-  margin: 0 auto;
-	max-width: 580px;
-  text-align: center;
+  display: flex;
+  align-items: center;
 }
 
 .main-navigation ul {
-	display: none;
-	list-style: none;
-	margin: 0;
-	padding-left: 0;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
 }
 
 .main-navigation ul ul {
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-	float: left;
-	position: absolute;
-	top: 100%;
-	left: -999em;
-	z-index: 99999;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+  float: left;
+  position: absolute;
+  top: 100%;
+  left: -999em;
+  z-index: 99999;
   text-align: left;
 }
 
 .main-navigation ul ul ul {
-	left: -999em;
-	top: 0;
+  left: -999em;
+  top: 0;
 }
 
 .main-navigation ul ul li:hover > ul,
 .main-navigation ul ul li.focus > ul {
-	left: 100%;
+  left: 100%;
 }
 
 .main-navigation ul ul a {
-	width: 200px;
+  width: 200px;
 }
 
 .main-navigation ul li:hover > ul,
 .main-navigation ul li.focus > ul {
   display: block;
-	left: auto;
+  left: auto;
 }
 
 .main-navigation li {
-	position: relative;
+  position: relative;
 }
 
-.main-navigation a {
-	display: block;
-	text-decoration: none;
+.main-navigation .nav-menu a {
+  display: block;
+  padding-right: 12px;
+  padding-left: 12px;
+  font-weight: 300;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 .menu-toggle {
+  display: none;
   padding: 1em;
-}
-
-@media screen and (max-width: 37.5em) {
-	/* Small menu. */
-	.menu-toggle,
-	.main-navigation.toggled ul {
-		display: block;
-    margin: 0 auto;
-	}
-}
-
-@media screen and (min-width: 37.5em) {
-	.menu-toggle {
-		display: none;
-	}
-	.main-navigation ul {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .main-navigation a {
-    padding: 0 .5em;
-  }
 }
 
 .site-main .comment-navigation,
 .site-main .posts-navigation,
 .site-main .post-navigation {
   border-bottom: 1px solid #e2e4e7;
-	margin: 0 auto 60px;
+  margin: 0 auto 60px;
   max-width: 580px;
-	overflow: hidden;
+  overflow: hidden;
   padding-bottom: 60px;
 }
 
 .nav-links {
-	display: flex;
+  display: flex;
 }
 
 .comment-navigation .nav-previous,
 .posts-navigation .nav-previous,
 .post-navigation .nav-previous {
-	width: 50%;
-	flex: 1 0 50%;
+  width: 50%;
+  flex: 1 0 50%;
 }
 
 .comment-navigation .nav-next,
 .posts-navigation .nav-next,
 .post-navigation .nav-next {
-	text-align: end;
-	flex: 1 0 50%;
+  text-align: end;
+  flex: 1 0 50%;
 }
 
 /*--------------------------------------------------------------
@@ -221,23 +211,23 @@ big {
 
 .alignleft,
 .alignright {
-	max-width: 580px !important;	/* Let's work to make this !important unnecessary */
+  max-width: 580px !important;	/* Let's work to make this !important unnecessary */
 }
 
 .alignleft img,
 .alignright img,
 .alignleft figcaption,
 .alignright figcaption {
-	max-width: 50%;
-	width: 50%;
+  max-width: 50%;
+  width: 50%;
 }
 
 .alignleft figcaption {
-	clear: left;
+  clear: left;
 }
 
 .alignright figcaption {
-	clear: right;
+  clear: right;
 }
 
 .alignleft img,
@@ -264,7 +254,7 @@ big {
 # Widgets
 --------------------------------------------------------------*/
 .widget-area {
-	width: 25%;
+  width: 25%;
 }
 
 .widget {
@@ -337,8 +327,6 @@ big {
 .not-found .page-content,
 .search .entry-summary {
   margin: 1.5em auto;
-  padding-left: 14px;
-  padding-right: 14px;
   max-width: 580px;
 }
 
@@ -355,22 +343,6 @@ big {
   font-size: 90%;
   padding-bottom: 40px;
   border-bottom: 1px solid #e2e4e7;
-}
-
-@media screen and (min-width: 608px) {
-  .entry-header,
-  .page-header,
-  .entry-footer,
-  .site-info,
-  .posts-navigation,
-  .post-navigation,
-  .page-navigation,
-  .comments-area,
-  .not-found .page-content,
-  .search .entry-summary {
-    padding-left: 0;
-    padding-right: 0;
-  }
 }
 
 /*--------------------------------------------------------------
@@ -486,4 +458,23 @@ big {
 
 .gallery-caption {
   display: block;
+}
+
+// Buttons
+.btn-link {
+  padding: 0;
+}
+
+.btn-region {
+  font-weight: 300;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  span {
+    vertical-align: middle;
+  }
 }

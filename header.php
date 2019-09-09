@@ -8,45 +8,77 @@
  *
  * @package monitor-pacienta-theme
  */
+
+  //  ::1
+  //  77.87.100.161 - Ингушетия
+  //  194.28.75.138 - КБР
+  //  185.147.95.255 - madrid
+
+  // Определение региона
+  if (!isset($_COOKIE['region'])) {
+    $record = geoip_detect2_get_info_from_ip('::1', NULL);
+    $region = $record->mostSpecificSubdivision->name;
+
+    if ($region !== 'Дагестан' && $region !== 'Ингушетия' && $region !== 'Кабардино-Балкария') {
+      $region = 'Дагестан';
+    } elseif ($region == 'Кабардино-Балкария') {
+      $region = 'КБР';
+    }
+  }
+
+  // setcookie('region', $region, time()+31500000);
 ?>
+
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="http://gmpg.org/xfn/11">
+  <meta charset="<?php bloginfo( 'charset' ); ?>">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<?php wp_head(); ?>
+  <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'monitor-pacienta-theme' ); ?></a>
-		<header id="masthead" class="site-header">
-			<div class="site-branding">
-				<?php
-				the_custom_logo();
-				if ( is_front_page() && is_home() ) : ?>
-					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php else : ?>
-					<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-				endif;
+  <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'monitor-pacienta-theme' ); ?></a>
+  <header id="masthead" class="site-header">
+    <div class="container">
+      <nav id="site-navigation" class="main-navigation">
+        <?php
+        if ( is_front_page() && is_home() ) : ?>
+          <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><h1 class="site-title"><?php bloginfo( 'name' ); ?></h1></a>
+        <?php else : ?>
+          <a class="navbar-brand site-title" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+        <?php
+        endif; ?>
 
-				$description = get_bloginfo( 'description', 'display' );
-				if ( $description || is_customize_preview() ) : ?>
-					<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
-				<?php
-				endif; ?>
-			</div><!-- .site-branding -->
+        <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'monitor-pacienta-theme' ); ?></button>
+        <?php
+          wp_nav_menu( array(
+            'theme_location' => 'menu-1',
+            'menu_id'        => 'primary-menu',
+            'container'      => false
+          ) );
+        ?>
 
-			<nav id="site-navigation" class="main-navigation">
-				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'monitor-pacienta-theme' ); ?></button>
-				<?php
-					wp_nav_menu( array(
-						'theme_location' => 'menu-1',
-						'menu_id'        => 'primary-menu',
-					) );
-				?>
-			</nav><!-- #site-navigation -->
-		</header><!-- #masthead -->
+        <div class="ml-auto">
+          <?php
+          if (isset($_COOKIE['region'])) : ?>
+            <button class="btn btn-link btn-region" type="button" data-toggle="modal" data-target="#changeRegionModal">
+              <svg width="23" height="23"><use xlink:href="<?php echo bloginfo('template_url'); ?>/img/sprite.svg#icon-send"></use></svg>
+              <span><?php echo $_COOKIE['region']; ?></span>
+            </button>
+          <?php
+          else: ?>
+            Ваш регион: <?php echo $region; ?>?<br>
+            <button class="btn btn-primary btn-sm btn-region-confirm" id="regionComfirmBtn" type="button" data-region="<?php echo $region ?>">Да</button>
+            <button class="btn btn-secondary btn-sm" type="button" data-toggle="modal" data-target="#changeRegionModal">Выбрать другой</button>
+          <?php
+          endif; ?>
+        </div>
+      </nav><!-- #site-navigation -->
+    </div>
+
+
+
+  </header><!-- #masthead -->

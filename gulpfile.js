@@ -4,6 +4,7 @@ const { src, dest, series, parallel, watch } = require('gulp');
 const plumber = require('gulp-plumber');
 const sass = require('gulp-sass');
 const postcss = require('gulp-postcss');
+const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('autoprefixer');
 const imagemin = require('gulp-imagemin');
 const svgstore = require('gulp-svgstore');
@@ -39,10 +40,12 @@ function serve() {
 function css() {
   return src(folder.assets + 'scss/style.scss')
     .pipe(plumber())
+    .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
     .pipe(postcss([
       autoprefixer()
     ]))
+    .pipe(sourcemaps.write('.'))
     .pipe(dest('./'))
     .pipe(browserSync.stream());
 }

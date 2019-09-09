@@ -11,20 +11,37 @@
 
 ?>
 
-<footer id="colophon" class="site-footer">
-	<div class="site-info">
-		<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'monitor-pacienta-theme' ) ); ?>"><?php
-			/* translators: %s: CMS name, i.e. WordPress. */
-			printf( esc_html__( 'Proudly powered by %s', 'monitor-pacienta-theme' ), 'WordPress' );
-		?></a>
-		<span class="sep"> | </span>
-		<?php
-			/* translators: 1: Theme name, 2: Theme author. */
-			printf( esc_html__( 'Theme: %s', 'monitor-pacienta-theme' ), '<a href="https://github.com/WordPress/monitor-pacienta-theme/">Gutenberg</a>' );
-		?>
-	</div><!-- .site-info -->
-</footer><!-- #colophon -->
+  <footer id="colophon" class="site-footer">
+    <div class="site-info">
+      <a class="navbar-brand site-title" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+      <?php
+      $description = get_bloginfo( 'description', 'display' );
+      if ( $description || is_customize_preview() ) : ?>
+        <p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
+      <?php
+      endif; ?>
+    </div><!-- .site-info -->
+  </footer><!-- #colophon -->
 </div><!-- #page -->
+
+<!-- Modal -->
+<div class="modal fade" id="changeRegionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Выбор региона</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <button type="button" class="btn btn-link btn-region-confirm" data-region="Дагестан">Дагестан</button>
+        <button type="button" class="btn btn-link btn-region-confirm" data-region="Ингушетия">Ингушетия</button>
+        <button type="button" class="btn btn-link btn-region-confirm" data-region="КБР">КБР</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <?php wp_footer(); ?>
 

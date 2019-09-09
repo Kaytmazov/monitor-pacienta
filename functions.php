@@ -28,19 +28,6 @@ if ( ! function_exists( 'monitor_pacienta_theme_setup' ) ) :
       'gallery',
       'caption',
     ) );
-
-
-    /**
-     * Add support for core custom logo.
-     *
-     * @link https://codex.wordpress.org/Theme_Logo
-     */
-    add_theme_support( 'custom-logo', array(
-      'width'       => 240,
-      'height'      => 26,
-      'flex-width'  => true,
-      'flex-height' => true,
-    ) );
   }
 endif;
 add_action( 'after_setup_theme', 'monitor_pacienta_theme_setup' );
@@ -86,6 +73,8 @@ function monitor_pacienta_theme_scripts() {
   wp_enqueue_script( 'monitor-pacienta-theme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
   wp_enqueue_script( 'monitor-pacienta-theme-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+
+  wp_enqueue_script( 'scripts-js', get_template_directory_uri() . '/js/scripts.js', array(), null, true );
 }
 add_action( 'wp_enqueue_scripts', 'monitor_pacienta_theme_scripts' );
 

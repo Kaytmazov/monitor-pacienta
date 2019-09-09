@@ -16,7 +16,7 @@ function monitor_pacienta_theme_customize_register( $wp_customize ) {
 
 	if ( isset( $wp_customize->selective_refresh ) ) {
 		$wp_customize->selective_refresh->add_partial( 'blogname', array(
-			'selector'        => '.site-title a',
+			'selector'        => '.site-title',
 			'render_callback' => 'monitor_pacienta_theme_customize_partial_blogname',
 		) );
 		$wp_customize->selective_refresh->add_partial( 'blogdescription', array(

@@ -1,4 +1,4 @@
-$font-family-sans-serif:    "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-sans-serif:    'Inter', sans-serif;
 $h1-font-size:              42px;
 $h2-font-size:              36px;
 $h3-font-size:              28px;
@@ -8,10 +8,10 @@ $h6-font-size:              15px;
 
 $headings-color:          #333;
 
-$body-color:              #535B63;
-$link-color:              #0173c1;
+$body-color:              #150045;
+$link-color:              #2e375f;
 
-$primary:                 #0063b0;
+$primary:                 #BC3356;
 $topbarBg:                #1e3685;
 $footerBg:                #e6ebec;
 
@@ -20,8 +20,11 @@ $text-muted:              #a5aeb3;
 $border-radius-lg:          8px;
 
 
-$navbar-padding-y:          10px;
-$navbar-brand-padding-y:    5px;
+$navbar-padding-y:                10px;
+$navbar-light-brand-color:        $primary;
+$navbar-light-brand-hover-color:  $primary;
+$navbar-brand-padding-y:          5px;
+$navbar-brand-font-size:          23px;
 
 $caret-vertical-align: middle;
 

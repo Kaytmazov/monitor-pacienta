@@ -27,7 +27,7 @@ function clean() {
 // Server
 function serve() {
   browserSync.init({
-    proxy: 'monitor-pacienta:8888',
+    proxy: 'monitor:8888',
     browser: 'google chrome'
   });
 
@@ -74,9 +74,9 @@ function svgSprite() {
 
 // SVG min
 function svgMin() {
-  return src(folder.assets + 'img/svg-icons/*.svg')
+  return src(folder.assets + 'img/svg-min/*.svg')
     .pipe(svgmin())
-    .pipe(dest(folder.dist + './img/icons'));
+    .pipe(dest('./img/svg'));
 }
 
 const build = series(clean, parallel(css, images, svgSprite, svgMin));

@@ -24,12 +24,12 @@
   </footer><!-- #colophon -->
 </div><!-- #page -->
 
-<!-- Modal -->
-<div class="modal fade" id="changeRegionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<!-- Модальное окно "Выбор региона" -->
+<div class="modal fade" id="changeRegionModal" tabindex="-1" role="dialog" aria-labelledby="changeRegionModalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Выбор региона</h5>
+        <h5 class="modal-title" id="changeRegionModalTitle">Выбор региона</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -38,6 +38,25 @@
         <button type="button" class="btn btn-link btn-region-confirm" data-region="Дагестан">Дагестан</button>
         <button type="button" class="btn btn-link btn-region-confirm" data-region="Ингушетия">Ингушетия</button>
         <button type="button" class="btn btn-link btn-region-confirm" data-region="КБР">КБР</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Модальное окно "Видео" -->
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="videoModalTitle">Видео</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="embed-responsive embed-responsive-16by9">
+          <?php the_field('video_iframe'); ?>
+        </div>
       </div>
     </div>
   </div>

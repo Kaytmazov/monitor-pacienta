@@ -61,20 +61,23 @@
           ) );
         ?>
 
-        <div class="ml-auto">
-          <?php
-          if (isset($_COOKIE['region'])) : ?>
-            <button class="btn btn-link btn-region" type="button" data-toggle="modal" data-target="#changeRegionModal">
-              <svg width="23" height="23"><use xlink:href="<?php echo bloginfo('template_url'); ?>/img/sprite.svg#icon-send"></use></svg>
-              <span><?php echo $_COOKIE['region']; ?></span>
-            </button>
-          <?php
-          else: ?>
-            Ваш регион: <?php echo $region; ?>?<br>
-            <button class="btn btn-primary btn-sm btn-region-confirm" id="regionComfirmBtn" type="button" data-region="<?php echo $region ?>">Да</button>
-            <button class="btn btn-secondary btn-sm" type="button" data-toggle="modal" data-target="#changeRegionModal">Выбрать другой</button>
-          <?php
-          endif; ?>
+        <div class="header-right">
+          <div class="header-region">
+            <?php
+            if (isset($_COOKIE['region'])) : ?>
+              <button class="btn btn-link btn-region" type="button" data-toggle="modal" data-target="#changeRegionModal">
+                <svg width="23" height="23"><use xlink:href="<?php echo bloginfo('template_url'); ?>/img/sprite.svg#icon-send"></use></svg>
+                <span><?php echo $_COOKIE['region']; ?></span>
+              </button>
+            <?php
+            else: ?>
+              Ваш регион: <?php echo $region; ?>?<br>
+              <button class="btn btn-primary btn-sm btn-region-confirm" id="regionComfirmBtn" type="button" data-region="<?php echo $region ?>">Да</button>
+              <button class="btn btn-secondary btn-sm" type="button" data-toggle="modal" data-target="#changeRegionModal">Выбрать другой</button>
+            <?php
+            endif; ?>
+          </div>
+          <button class="btn btn-primary btn-help" type="button">Помочь проекту</button>
         </div>
       </nav><!-- #site-navigation -->
     </div>

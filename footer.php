@@ -10,17 +10,121 @@
  */
 
 ?>
+  <section class="donate-section section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <h2 class="text-primary"><?php the_field('donate_title', 5); ?></h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+          <?php
+          $donate_texts = get_field('donate_texts', 5);
+          foreach( $donate_texts as $donate_text ): ?>
+            <div class="donate-text-item">
+              <h4 class="donate-text-title"><?php echo $donate_text['title']; ?></h4>
+              <p class="donate-text-desc"><?php echo $donate_text['desc']; ?></p>
+            </div>
+          <?php
+          endforeach; ?>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <footer id="colophon" class="site-footer">
-    <div class="site-info">
-      <a class="navbar-brand site-title" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-      <?php
-      $description = get_bloginfo( 'description', 'display' );
-      if ( $description || is_customize_preview() ) : ?>
-        <p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
-      <?php
-      endif; ?>
-    </div><!-- .site-info -->
+  <footer id="colophon" class="site-footer section">
+    <?php
+    $contacts_page = get_page_by_path( 'contacts' );
+    $contacts_page_id = 8;
+    ?>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <div class="footer-contacts">
+            <h2><?php echo $contacts_page->post_title; ?></h2>
+            <?php
+            global $region;
+
+            $regions_map = [
+              'Дагестан'  => '',
+              'Ингушетия' => 'ingushetia_',
+              'КБР'       => 'kbr_'
+            ];
+
+            $contacts_id = 8;
+            $contacts_field = $regions_map[$region] . 'contacts';
+
+            if( have_rows($contacts_field, $contacts_id) ):
+              while( have_rows($contacts_field, $contacts_id) ): the_row();
+
+                $socials = get_sub_field('socials');
+                $messengers = get_sub_field('messengers');
+                $address = get_sub_field('address');
+                $phone = get_sub_field('phone');
+
+                if ( $socials ) : ?>
+                  <h4 class="socials-title">Следуйте за нами в социальных сетях</h4>
+                  <div class="socials-list">
+                    <?php
+                    foreach( $socials as $social ):
+                      $item = $social['item']; ?>
+
+                      <a class="social-item item-<?php echo $item['value']; ?>" href="<?php echo $social['url']; ?>" target="_blank">
+                        <svg width="48" height="48"><use xlink:href="#icon-<?php echo $item['value']; ?>"></use></svg>
+                        <span><?php echo $item['label']; ?></span>
+                      </a>
+                    <?php
+                    endforeach; ?>
+                  </div>
+                <?php
+                endif; ?>
+
+                <div class="contacts-item">
+                  <span class="contacts-item-key">Написать нам:</span>
+                  <div class="contacts-item-value">
+                    <?php
+                    if ( $messengers ) :
+                      foreach( $messengers as $messenger ):
+                        $item = $messenger['item']; ?>
+
+                        <a class="messenger-item item-<?php echo $item; ?>" href="<?php echo $messenger['url']; ?>" target="_blank">
+                          <svg width="48" height="48"><use xlink:href="#icon-<?php echo $item; ?>"></use></svg>
+                        </a>
+                      <?php
+                      endforeach; ?>
+                    <?php
+                    endif; ?>
+
+                    <a href="tel:<?php echo $phone; ?>"><?php echo $phone; ?></a>
+                  </div>
+                </div>
+                <div class="contacts-item">
+                  <span class="contacts-item-key">Наш адрес:</span>
+                  <div class="contacts-item-value"><?php echo $address; ?></div>
+                </div>
+
+              <?php endwhile; ?>
+
+            <?php endif; ?>
+          </div>
+          <div class="site-info">
+            <a class="navbar-brand site-title" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+            <?php
+            $description = get_bloginfo( 'description', 'display' );
+            if ( $description || is_customize_preview() ) : ?>
+              <p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
+            <?php
+            endif; ?>
+          </div><!-- .site-info -->
+        </div>
+        <div class="col-md-5">
+
+        </div>
+      </div>
+    </div>
   </footer><!-- #colophon -->
 </div><!-- #page -->
 
@@ -60,6 +164,11 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- Svg Sprite -->
+<div class="sr-only">
+  <?php echo file_get_contents( get_stylesheet_directory_uri() . '/img/sprite.svg' ); ?>
 </div>
 
 <?php wp_footer(); ?>

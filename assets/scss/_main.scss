@@ -2,6 +2,10 @@ h2 {
   margin-bottom: 2rem;
 }
 
+p {
+  line-height: 1.7;
+}
+
 .btn-default {
   color: $primary;
   background-color: $btn-default;
@@ -31,12 +35,13 @@ h2 {
   }
 }
 
-.link-arrow {
+.link-primary {
   color: $primary;
+  white-space: nowrap;
 
   &:hover,
   &:focus {
-    color: darken($primary, 10);
+    color: darken($primary, 8);
     text-decoration: none;
   }
 
@@ -65,11 +70,13 @@ h2 {
 
     &-title {
       font-size: 48px;
+      color: $primary;
     }
 
     &-subtitle {
       margin-bottom: 15px;
       font-size: 28px;
+      color: $primary;
     }
 
     &-list {
@@ -109,7 +116,7 @@ h2 {
     max-width: 33.33333%;
     padding: 16px 70px;
     color: $primary;
-    background-color: $lightPrimary;
+    background-color: $light-primary;
 
     &:first-of-type {
       text-align: right;
@@ -188,7 +195,6 @@ h2 {
   &-title {
     margin-bottom: 4px;
     font-weight: 500;
-    color: $body-color;
   }
 
   &-link {
@@ -202,4 +208,210 @@ h2 {
   top: -6px;
   right: -6px;
   z-index: 10;
+}
+
+.instructions-section {
+  background-color: $section-bg;
+
+  .card-deck {
+    padding: 34px 22px;
+    background: url(img/svg/instructions-dots-bg.svg) no-repeat right top;
+
+    .card {
+      margin-left: 10px;
+      margin-right: 10px;
+      border: none;
+
+      &-title {
+        text-align: center;
+      }
+
+      li {
+        margin-top: 1.5rem;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 18px;
+        font-weight: 500;
+        border-bottom: 1px solid rgba(47, 73, 140, 0.2);
+      }
+
+      .link-arrow {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        text-decoration: none;
+
+        span {
+          margin-right: auto;
+        }
+
+        svg {
+          flex-shrink: 0;
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+}
+
+.ourwork-section {
+  .card {
+    border-color: #de9fae;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      border-color: $primary;
+    }
+
+    &.active {
+      background-color: $light-primary;
+      border-color: $light-primary;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: -12px;
+        display: block;
+        width: 24px;
+        height: 24px;
+        margin-top: -12px;
+        background-color: $light-primary;
+        border-top-right-radius: 10px;
+        transform: rotate(45deg);
+      }
+    }
+
+    & + .card {
+      margin-top: 1.8rem;
+    }
+
+    &-body {
+      padding: 24px;
+    }
+
+    &-title {
+      color: $body-color;
+    }
+
+    p {
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+}
+
+.about-section {
+  color: #fff;
+  background-color: $primary;
+
+  .container {
+    background: url(img/svg/about-dots-bg.svg) no-repeat right top;
+  }
+
+  &-row {
+    align-items: center;
+    padding: 10px 7px;
+  }
+
+  &-subtitle {
+    margin-bottom: 2rem;
+    font-size: 22px;
+  }
+
+  .statistic-card {
+    background-color: #501b3c;
+    box-shadow: -6px 6px 24px rgba(80, 27, 60, .5);
+    border-radius: 18px;
+  }
+
+  .statistic-item {
+
+    & + .statistic-item {
+      margin-top: 40px;
+    }
+
+    &-title {
+      margin-bottom: 5px;
+      font-size: 56px;
+    }
+
+    &-subtitle {
+      font-size: 22px;
+    }
+  }
+}
+
+.donate-section {
+  background-color: $section-bg;
+
+  .donate-text-item {
+    margin-bottom: 3rem;
+  }
+
+  .donate-text-title {
+    font-weight: 500;
+  }
+
+  .donate-text-desc {
+    font-size: 18px;
+  }
+}
+
+.socials-title {
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.socials-list {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+
+  .social-item {
+    text-align: center;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    & + .social-item {
+      margin-left: 1rem;
+    }
+
+    svg {
+      margin-bottom: 1rem;
+    }
+
+    span {
+      display: block;
+      font-size: 14px;
+    }
+  }
+}
+
+.messenger-item {
+  display: inline-block;
+  margin-right: 1rem;
+  vertical-align: middle;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.contacts-item {
+  display: flex;
+  margin-bottom: 2rem;
+  font-size: 24px;
+  font-weight: 300;
+
+  &-key {
+    flex-shrink: 0;
+    flex-basis: 200px;
+    margin-right: 10px;
+    white-space: nowrap;
+  }
 }

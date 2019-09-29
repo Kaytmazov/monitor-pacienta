@@ -12,7 +12,6 @@
   .entry-header,
   .page-header,
   .entry-footer,
-  .site-info,
   .posts-navigation,
   .post-navigation,
   .page-navigation,
@@ -21,5 +20,22 @@
   .search .entry-summary {
     padding-left: 14px;
     padding-right: 14px;
+  }
+}
+
+@media (min-width: 992px) {
+  .ourwork-tabs {
+    flex: 0 0 430px;
+    max-width: 430px;
+  }
+
+  .ourwork-content {
+    margin-left: 70px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container-lg {
+    max-width: 1343px;
   }
 }

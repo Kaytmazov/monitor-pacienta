@@ -239,3 +239,19 @@ function wp_terms_checklist_args($args) {
   $args['checked_ontop'] = false;
   return $args;
 }
+
+/**
+ * Определение региона
+ */
+if (!isset($_COOKIE['region'])) {
+  $record = geoip_detect2_get_info_from_ip('::1', NULL);
+  $region = $record->mostSpecificSubdivision->name;
+
+  if ($region !== 'Дагестан' && $region !== 'Ингушетия' && $region !== 'Кабардино-Балкария') {
+    $region = 'Дагестан';
+  } elseif ($region == 'Кабардино-Балкария') {
+    $region = 'КБР';
+  }
+} else {
+  $region = $_COOKIE['region'];
+}

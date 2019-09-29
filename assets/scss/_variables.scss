@@ -1,6 +1,7 @@
 $font-family-sans-serif:    'Inter', sans-serif;
 $primary:                 #bc3356;
-$lightPrimary:            #ffe0de;
+$light-primary:           #ffe0de;
+$section-bg:              #f2f4f7;
 
 $body-color:              #150045;
 $link-color:              #2e375f;
@@ -9,7 +10,11 @@ $input-btn-padding-y:       .532rem;
 $input-btn-padding-x:       1.2rem;
 $input-btn-font-size:       14px;
 $btn-font-weight:           500;
-$btn-default:               $lightPrimary;
+$btn-default:               $light-primary;
+$btn-padding-y-lg:          .75rem;
+$btn-padding-x-lg:          1.6rem;
+$btn-border-radius-lg:      10px;
+
 
 $h1-font-size:              46px;
 $h2-font-size:              44px;
@@ -18,10 +23,13 @@ $h4-font-size:              26px;
 $h5-font-size:              18px;
 $h6-font-size:              16px;
 $headings-font-weight:      700;
-$headings-color:            $primary;
+$headings-margin-bottom:    1rem;
 
 
 $navbar-light-brand-color:        $primary;
 $navbar-light-brand-hover-color:  $primary;
 $navbar-brand-padding-y:          5px;
 $navbar-brand-font-size:          23px;
+
+$card-spacer-x:                   2rem;
+$card-border-radius:              8px;

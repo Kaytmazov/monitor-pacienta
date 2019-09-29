@@ -3,13 +3,9 @@ get_header(); ?>
 
   <main id="primary" class="site-main">
     <?php
-    if (!isset($_COOKIE['region'])) {
-      $region_name = 'Дагестан';
-    } else {
-      $region_name = $_COOKIE['region'];
-    }
+    global $region;
 
-    $region_cat = get_term_by('name', $region_name, 'instructions_category');
+    $region_cat = get_term_by('name', $region, 'instructions_category');
 
     $region_child_cats = get_terms(
       array(
@@ -70,9 +66,9 @@ get_header(); ?>
             <div class="problems-list-item">
               Проблемы
               <h5 class="problems-item-title">
-                <a class="link-arrow" href="<?php echo esc_url( get_term_link( $region_child_cat ) ) ?>">
+                <a class="link-primary" href="<?php echo esc_url( get_term_link( $region_child_cat ) ) ?>">
                   <span><?php echo $region_child_cat->name; ?></span>
-                  <svg width="9" height="13"><use xlink:href="<?php echo bloginfo('template_url'); ?>/img/sprite.svg#icon-link-arrows"></use></svg>
+                  <svg width="9" height="13"><use xlink:href="#icon-link-arrows"></use></svg>
                 </a>
               </h5>
             </div>
@@ -86,7 +82,7 @@ get_header(); ?>
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
-            <h2><?php the_field('video_title'); ?></h2>
+            <h2 class="text-primary"><?php the_field('video_title'); ?></h2>
           </div>
         </div>
         <div class="row">
@@ -95,7 +91,7 @@ get_header(); ?>
               <img class="img-fluid" src="<?php the_field('video_preview'); ?>" alt="">
               <div class="video-play-block">
                 <button class="btn btn-play" type="button" data-toggle="modal" data-target="#videoModal">
-                  <svg width="12" height="13"><use xlink:href="<?php echo bloginfo('template_url'); ?>/img/sprite.svg#icon-play"></use></svg>
+                  <svg width="12" height="13"><use xlink:href="#icon-play"></use></svg>
                 </button>
                 <span>Смотрите видео</span>
               </div>
@@ -108,9 +104,9 @@ get_header(); ?>
               foreach( $memos as $memo ): ?>
                 <div class="memo-item">
                   <h5 class="memo-item-title"><?php echo $memo['title']; ?></h5>
-                  <a class="memo-item-link link-arrow" href="<?php echo $memo['url']; ?>">
+                  <a class="memo-item-link link-primary" href="<?php echo $memo['url']; ?>">
                     <span><?php echo $memo['url_name']; ?></span>
-                    <svg width="9" height="13"><use xlink:href="<?php echo bloginfo('template_url'); ?>/img/sprite.svg#icon-link-arrows"></use></svg>
+                    <svg width="9" height="13"><use xlink:href="#icon-link-arrows"></use></svg>
                   </a>
                 </div>
               <?php
@@ -122,6 +118,148 @@ get_header(); ?>
       </div>
     </section>
 
+    <section class="instructions-section section">
+      <?php $instructions_page = get_page_by_path( 'instructions' ); ?>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <h2 class="text-primary"><?php echo $instructions_page->post_title; ?></h2>
+            <?php echo $instructions_page->post_content; ?>
+          </div>
+        </div>
+      </div>
+
+      <div class="container container-lg">
+        <div class="card-deck">
+          <?php
+          foreach( array_slice($region_child_cats, 0, 3) as $region_child_cat ) : ?>
+            <div class="card">
+              <div class="card-body">
+                <h3 class="card-title">
+                  <a class="link-primary" href="<?php echo esc_url( get_term_link( $region_child_cat ) ) ?>"><?php echo $region_child_cat->name; ?></a>
+                </h3>
+                <?php
+                $loop = new WP_Query( array(
+                  'tax_query' => array(
+                    array(
+                      'taxonomy' => 'instructions_category',
+                      'field'    => 'slug',
+                      'terms'    => $region_child_cat
+                    )
+                  ),
+                  'posts_per_page' => 5,
+                  'orderby' => 'date',
+                  'order' => 'ASC'
+                ) );
+                if ( $loop->have_posts() ) : ?>
+                  <ul class="list-unstyled">
+                    <?php
+                    while ( $loop->have_posts() ) : $loop->the_post(); ?>
+                      <li>
+                        <a class="link-arrow" href="<?php the_permalink(); ?>">
+                          <span><?php the_title(); ?></span>
+                          <svg width="24" height="16"><use xlink:href="#icon-link-single-arrow"></use></svg>
+                        </a>
+                      </li>
+                    <?php endwhile; ?>
+                  </ul>
+                <?php endif; wp_reset_postdata(); ?>
+              </div>
+            </div><!-- .card -->
+          <?php
+          endforeach; ?>
+        </div><!-- .card-deck -->
+      </div>
+    </section>
+
+    <section class="ourwork-section section">
+      <?php $ourwork_page = get_page_by_path( 'our-work' ); ?>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <h2 class="text-primary"><?php echo $ourwork_page->post_title; ?></h2>
+            <?php echo $ourwork_page->post_content; ?>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <?php
+          $ourwork_cat_id = get_cat_ID( 'Наша работа' );
+          $ourwork_args = array(
+            'cat' => $ourwork_cat_id,
+            'posts_per_page' => 4,
+          );
+          $ourwork_posts = new WP_Query($ourwork_args);
+
+          if ($ourwork_posts->have_posts()) : ?>
+            <div class="ourwork-tabs col-12 col-md-5">
+              <div class="nav flex-column" id="cards-tab" role="tablist" aria-orientation="vertical">
+                <?php
+                $i = 0;
+                while($ourwork_posts->have_posts()) : $ourwork_posts->the_post(); ?>
+                  <a class="card <?php if($i == 0) { ?>active<?php } ?>" id="cards-tab-<?php echo $i ?>" href="#cards-<?php echo $i ?>" data-toggle="tab" role="tab" aria-controls="cards-<?php echo $i ?>" aria-selected="<?php if($i == 0) { ?>true<?php } ?>">
+                    <div class="card-body">
+                      <h6 class="card-title"><?php the_title(); ?></h6>
+                      <?php the_excerpt(); ?>
+                    </div>
+                  </a>
+                <?php
+                $i++;
+                endwhile; ?>
+              </div>
+            </div>
+            <div class="ourwork-content col">
+              <div class="tab-content" id="cards-tabContent">
+                <?php
+                $i = 0;
+                while($ourwork_posts->have_posts()) : $ourwork_posts->the_post(); ?>
+                  <div class="tab-pane fade <?php if($i == 0) { ?>show active<?php } ?>" id="cards-<?php echo $i ?>" role="tabpanel" aria-labelledby="cards-tab-<?php echo $i ?>">
+                    <?php the_content(); ?>
+                  </div>
+                <?php
+                $i++;
+                endwhile; ?>
+              </div>
+            </div>
+          <?php
+          wp_reset_postdata();
+          endif;?>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section section">
+      <div class="container container-lg">
+        <div class="about-section-row row">
+          <div class="col-md-7">
+            <h2><?php the_field('about_title'); ?></h2>
+            <h4 class="about-section-subtitle"><?php the_field('about_subtitle'); ?></h4>
+            <?php the_field('about_text'); ?>
+            <div class="mt-5">
+              <a href="<?php the_field('about_btn_url'); ?>" class="btn btn-default btn-lg">Подробнее о нас</a>
+            </div>
+          </div>
+          <div class="col-md-4 offset-md-1">
+            <div class="statistic-card card">
+              <div class="card-body">
+                <?php
+                $about_statistics = get_field('about_statistics');
+                foreach( $about_statistics as $about_statistic ): ?>
+                  <div class="statistic-item">
+                    <h2 class="statistic-item-title"><?php echo $about_statistic['title']; ?></h2>
+                    <p class="statistic-item-subtitle"><?php echo $about_statistic['subtitle']; ?></p>
+                  </div>
+                <?php
+                endforeach; ?>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main><!-- #primary -->
 

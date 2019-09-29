@@ -14,17 +14,7 @@
   //  194.28.75.138 - КБР
   //  185.147.95.255 - madrid
 
-  // Определение региона
-  if (!isset($_COOKIE['region'])) {
-    $record = geoip_detect2_get_info_from_ip('::1', NULL);
-    $region = $record->mostSpecificSubdivision->name;
 
-    if ($region !== 'Дагестан' && $region !== 'Ингушетия' && $region !== 'Кабардино-Балкария') {
-      $region = 'Дагестан';
-    } elseif ($region == 'Кабардино-Балкария') {
-      $region = 'КБР';
-    }
-  }
 
   // setcookie('region', $region, time()+31500000);
 ?>
@@ -64,9 +54,10 @@
         <div class="header-right">
           <div class="header-region">
             <?php
+            global $region;
             if (isset($_COOKIE['region'])) : ?>
               <button class="btn btn-link btn-region" type="button" data-toggle="modal" data-target="#changeRegionModal">
-                <svg width="23" height="23"><use xlink:href="<?php echo bloginfo('template_url'); ?>/img/sprite.svg#icon-send"></use></svg>
+                <svg width="23" height="23"><use xlink:href="#icon-send"></use></svg>
                 <span><?php echo $_COOKIE['region']; ?></span>
               </button>
             <?php

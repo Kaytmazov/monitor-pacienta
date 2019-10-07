@@ -49,7 +49,7 @@ get_header(); ?>
                 <?php endif; wp_reset_postdata(); ?>
               </div>
               <div class="intro-slide-image">
-                <img src="<?php the_field('cat_image', $region_child_cat); ?>" alt="">
+                <img class="img-fluid" src="<?php the_field('cat_image', $region_child_cat); ?>" alt="">
               </div>
             </div><!-- .intro-slide -->
           </div>
@@ -75,14 +75,14 @@ get_header(); ?>
           </div>
         <?php
         endforeach; ?>
-      </div><!-- .container -->
+      </div><!-- .problems-list -->
     </section>
 
     <section class="video-section section">
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
-            <h2 class="text-primary"><?php the_field('video_title'); ?></h2>
+            <h2><?php the_field('video_title'); ?></h2>
           </div>
         </div>
         <div class="row">
@@ -124,7 +124,7 @@ get_header(); ?>
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
-            <h2 class="text-primary"><?php echo $instructions_page->post_title; ?></h2>
+            <h2><?php echo $instructions_page->post_title; ?></h2>
             <?php echo $instructions_page->post_content; ?>
           </div>
         </div>
@@ -179,28 +179,27 @@ get_header(); ?>
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
-            <h2 class="text-primary"><?php echo $ourwork_page->post_title; ?></h2>
+            <h2><?php echo $ourwork_page->post_title; ?></h2>
             <?php echo $ourwork_page->post_content; ?>
           </div>
         </div>
 
-        <div class="row">
+        <?php
+        $ourwork_cat_id = get_cat_ID( 'Наша работа' );
+        $ourwork_args = array(
+          'cat' => $ourwork_cat_id,
+          'posts_per_page' => 4,
+        );
+        $ourwork_posts = new WP_Query($ourwork_args);
 
-          <?php
-          $ourwork_cat_id = get_cat_ID( 'Наша работа' );
-          $ourwork_args = array(
-            'cat' => $ourwork_cat_id,
-            'posts_per_page' => 4,
-          );
-          $ourwork_posts = new WP_Query($ourwork_args);
-
-          if ($ourwork_posts->have_posts()) : ?>
+        if ($ourwork_posts->have_posts()) : ?>
+          <div class="ourwork-desktop row">
             <div class="ourwork-tabs col-12 col-md-5">
               <div class="nav flex-column" id="cards-tab" role="tablist" aria-orientation="vertical">
                 <?php
                 $i = 0;
                 while($ourwork_posts->have_posts()) : $ourwork_posts->the_post(); ?>
-                  <a class="card <?php if($i == 0) { ?>active<?php } ?>" id="cards-tab-<?php echo $i ?>" href="#cards-<?php echo $i ?>" data-toggle="tab" role="tab" aria-controls="cards-<?php echo $i ?>" aria-selected="<?php if($i == 0) { ?>true<?php } ?>">
+                  <a class="card <?php if ($i == 0) echo 'active' ?>" id="cards-tab-<?php echo $i ?>" href="#cards-<?php echo $i ?>" data-toggle="tab" role="tab" aria-controls="cards-<?php echo $i ?>" aria-selected="<?php echo ($i == 0) ? 'true' : 'false'; ?>">
                     <div class="card-body">
                       <h6 class="card-title"><?php the_title(); ?></h6>
                       <?php the_excerpt(); ?>
@@ -216,7 +215,7 @@ get_header(); ?>
                 <?php
                 $i = 0;
                 while($ourwork_posts->have_posts()) : $ourwork_posts->the_post(); ?>
-                  <div class="tab-pane fade <?php if($i == 0) { ?>show active<?php } ?>" id="cards-<?php echo $i ?>" role="tabpanel" aria-labelledby="cards-tab-<?php echo $i ?>">
+                  <div class="tab-pane fade <?php if ($i == 0) echo 'show active' ?>" id="cards-<?php echo $i ?>" role="tabpanel" aria-labelledby="cards-tab-<?php echo $i ?>">
                     <?php the_content(); ?>
                   </div>
                 <?php
@@ -224,25 +223,46 @@ get_header(); ?>
                 endwhile; ?>
               </div>
             </div>
-          <?php
-          wp_reset_postdata();
-          endif;?>
-        </div>
+          </div>
+
+          <div class="ourwork-mobile">
+            <?php
+            $i = 0;
+            while($ourwork_posts->have_posts()) : $ourwork_posts->the_post(); ?>
+              <div class="card card-body">
+                <h6 class="card-title"><?php the_title(); ?></h6>
+                <?php the_excerpt(); ?>
+                <div class="text-center">
+                  <button class="btn btn-link link-primary" type="button" data-toggle="collapse" data-target="#collapse-<?php echo $i ?>" aria-expanded="false" aria-controls="collapse-<?php echo $i ?>">Посмотреть полностью</button>
+                </div>
+                <div class="collapse" id="collapse-<?php echo $i ?>">
+                  <div class="mt-4">
+                    <?php the_content(); ?>
+                  </div>
+                </div>
+              </div>
+            <?php
+            $i++;
+            endwhile; ?>
+          </div>
+        <?php
+        wp_reset_postdata();
+        endif;?>
       </div>
     </section>
 
     <section class="about-section section">
       <div class="container container-lg">
         <div class="about-section-row row">
-          <div class="col-md-7">
-            <h2><?php the_field('about_title'); ?></h2>
+          <div class="col-lg-7">
+            <h2 class="about-section-title"><?php the_field('about_title'); ?></h2>
             <h4 class="about-section-subtitle"><?php the_field('about_subtitle'); ?></h4>
             <?php the_field('about_text'); ?>
-            <div class="mt-5">
+            <div class="mt-4 mt-lg-5">
               <a href="<?php the_field('about_btn_url'); ?>" class="btn btn-default btn-lg">Подробнее о нас</a>
             </div>
           </div>
-          <div class="col-md-4 offset-md-1">
+          <div class="col-lg-5 col-xl-4 offset-xl-1">
             <div class="statistic-card card">
               <div class="card-body">
                 <?php

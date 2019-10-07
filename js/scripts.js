@@ -8,18 +8,17 @@
                      'path=' + path + ';';
   };
 
+  var regionComfirmBtns = document.querySelectorAll('.btn-region-confirm');
+
   onComfirmRegionBtnClick = function(evt) {
     evt.preventDefault();
     setCookie('region', evt.target.dataset.region, 366, '/');
     location.reload();
   };
 
-  var regionComfirmBtns = document.querySelectorAll('.btn-region-confirm');
-
   Array.prototype.forEach.call(regionComfirmBtns, function(it) {
     it.addEventListener('click', onComfirmRegionBtnClick);
   });
-
 
   // When the user scrolls the page, execute myFunction
   window.onscroll = function() {
@@ -42,9 +41,15 @@
     }
   };
 
+  // Скролл при клике на кнопку "Помочь проекту"
+  jQuery('.btn-help').click(function() {
+    jQuery('html,body').stop().animate({ scrollTop: jQuery(this.hash).offset().top - 100 }, 800);
+  });
+
+
   // Остановить видео при закрытии модального окна
   jQuery('#videoModal').on('hide.bs.modal', function (evt) {
-    var iframe = $(this).find('iframe');
+    var iframe = jQuery(this).find('iframe');
     iframe.attr('src', iframe.attr('src'));
   })
 

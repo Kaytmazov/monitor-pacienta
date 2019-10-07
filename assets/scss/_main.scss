@@ -1,9 +1,80 @@
-h2 {
+body {
+  @include media-breakpoint-down(xs) {
+    font-size: 14px;
+
+    &.nav-toggled {
+      overflow: hidden;
+    }
+  }
+}
+
+h1, h2 {
   margin-bottom: 2rem;
+  color: $primary;
+}
+
+h1 {
+  @include media-breakpoint-down(lg) {
+    font-size: 40px;
+  }
+
+  @include media-breakpoint-down(xs) {
+    font-size: 28px;
+  }
+}
+
+h2 {
+  @include media-breakpoint-down(lg) {
+    font-size: 36px;
+  }
+
+  @include media-breakpoint-down(xs) {
+    font-size: 22px;
+  }
+}
+
+h3 {
+  @include media-breakpoint-down(lg) {
+    font-size: 24px;
+  }
+
+  @include media-breakpoint-down(xs) {
+    font-size: 20px;
+  }
+}
+
+h4 {
+  @include media-breakpoint-down(lg) {
+    font-size: 22px;
+  }
+
+  @include media-breakpoint-down(xs) {
+    font-size: 18px;
+  }
+}
+
+h5 {
+  @include media-breakpoint-down(xs) {
+    font-size: 1rem;
+  }
 }
 
 p {
   line-height: 1.7;
+}
+
+blockquote {
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.btn-lg {
+  @include media-breakpoint-down(md) {
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    border-radius: 6px;
+  }
 }
 
 .btn-default {
@@ -35,9 +106,39 @@ p {
   }
 }
 
+.regions-modal {
+
+  .modal-body {
+    text-align: center;
+  }
+
+  .regions-btns {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+
+    @include media-breakpoint-down(xs) {
+      margin-bottom: 30px;
+    }
+  }
+
+  .btn-region-confirm {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 20px;
+    font-weight: 600;
+
+    @include media-breakpoint-down(xs) {
+      padding-left: .7rem;
+      padding-right: .7rem;
+      font-size: 16px;
+    }
+  }
+}
+
 .link-primary {
   color: $primary;
-  white-space: nowrap;
 
   &:hover,
   &:focus {
@@ -48,12 +149,45 @@ p {
   span {
     margin-right: 8px;
     vertical-align: middle;
+    white-space: normal;
   }
 }
 
+.link-arrow {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  text-decoration: none;
+
+  span {
+    margin-right: auto;
+  }
+
+  svg {
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+}
+
+.card-body {
+  @include media-breakpoint-down(xs) {
+    padding-left: 1.15rem;
+    padding-right: 1.15rem;
+  }
+}
+
+.badge .post-edit-link {
+  color: #fff;
+}
+
 .section {
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  @include media-breakpoint-down(xs) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
 }
 
 .intro {
@@ -61,22 +195,84 @@ p {
   padding-bottom: 130px;
   background-color: #fdfdfd;
 
+  @include media-breakpoint-down(md) {
+    padding-top: 50px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    padding-bottom: 50px;
+  }
+
+  @include media-breakpoint-down(xs) {
+    padding-bottom: 10px;
+  }
+
+  .intro-slider.slick-dotted {
+    @include media-breakpoint-down(xs) {
+      margin-bottom: 0;
+    }
+  }
+
   &-slide {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-top: 5px;
     padding-bottom: 5px;
 
+    @include media-breakpoint-down(xs) {
+      flex-direction: column;
+
+      &-info {
+        order: 2;
+        text-align: center;
+      }
+
+      &-image {
+        margin-top: 50px;
+        margin-bottom: 65px;
+
+        img {
+          height: 216px;
+        }
+      }
+    }
+
+
     &-title {
       font-size: 48px;
-      color: $primary;
+      white-space: nowrap;
+
+      @include media-breakpoint-down(lg) {
+        font-size: 36px;
+      }
+
+      @include media-breakpoint-down(sm) {
+        font-size: 28px;
+      }
+
+      @include media-breakpoint-down(xs) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        font-size: 22px;
+      }
     }
 
     &-subtitle {
       margin-bottom: 15px;
       font-size: 28px;
       color: $primary;
+
+      @include media-breakpoint-down(lg) {
+        font-size: 1.3rem;
+      }
+
+      @include media-breakpoint-down(xs) {
+        font-size: 18px;
+      }
     }
 
     &-list {
@@ -85,6 +281,12 @@ p {
       li {
         margin-bottom: 8px;
 
+        &:not(:nth-of-type(-n+3)) {
+          @include media-breakpoint-down(sm) {
+            display: none;
+          }
+        }
+
         a {
           font-size: 22px;
           font-weight: 500;
@@ -92,8 +294,23 @@ p {
           &:hover {
             text-decoration: none;
           }
+
+          @include media-breakpoint-down(lg) {
+            font-size: 18px;
+          }
+
+          @include media-breakpoint-down(xs) {
+            font-size: 14px;
+          }
         }
       }
+    }
+  }
+
+  .slick-dots {
+    @include media-breakpoint-down(xs) {
+      top: 285px;
+      bottom: auto;
     }
   }
 }
@@ -105,28 +322,64 @@ p {
 .problems-list {
   position: absolute;
   top: -82px;
-  width: 100%;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-between;
+  margin-left: 15px;
+  margin-right: 15px;
   font-family: 'Montserrat', sans-serif;
+
+  @include media-breakpoint-down(sm) {
+    position: static;
+    flex-direction: column;
+    margin: 24px 0;
+  }
 
   &-item-wrapper {
     flex: 0 0 33.33333%;
-    flex-grow: 1;
     max-width: 33.33333%;
     padding: 16px 70px;
     color: $primary;
     background-color: $light-primary;
 
+    @include media-breakpoint-down(lg) {
+      padding-left: 60px;
+      padding-right: 60px;
+    }
+
+    @include media-breakpoint-down(md) {
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      max-width: none;
+      flex-basis: 100%;
+      margin-bottom: 10px;
+      text-align: left;
+      border-radius: 6px;
+    }
+
     &:first-of-type {
       text-align: right;
       border-top-left-radius: 6px;
+
+      @include media-breakpoint-down(sm) {
+        text-align: left;
+      }
     }
 
     &:nth-child(2) {
       margin-left: 3px;
       margin-right: 3px;
       text-align: center;
+
+      @include media-breakpoint-down(sm) {
+        margin-left: 0;
+        margin-right: 0;
+        text-align: left;
+      }
     }
 
     &:last-of-type {
@@ -137,12 +390,17 @@ p {
   &-item {
     display: inline-block;
     text-align: left;
+
+    @include media-breakpoint-down(xs) {
+      font-size: 12px;
+    }
   }
 
   .problems-item-title {
     margin-top: 3px;
     margin-bottom: 0;
     font-weight: 500;
+    white-space: nowrap;
   }
 }
 
@@ -171,6 +429,10 @@ p {
       font-size: 18px;
       font-weight: 500;
       color: #fff;
+
+      @include media-breakpoint-down(xs) {
+        display: none;
+      }
     }
   }
 }
@@ -185,6 +447,12 @@ p {
   padding-right: 110px;
   border: 1px solid $primary;
   border-radius: 12px;
+
+  @include media-breakpoint-down(xs) {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+  }
 }
 
 .memo-item {
@@ -200,6 +468,7 @@ p {
   &-link {
     font-size: 12px;
     font-weight: 500;
+    white-space: nowrap;
   }
 }
 
@@ -208,6 +477,32 @@ p {
   top: -6px;
   right: -6px;
   z-index: 10;
+
+  @include media-breakpoint-down(xs) {
+    display: none;
+  }
+}
+
+.instruction-page {
+  &-title {
+    margin-bottom: 3rem;
+    font-size: 24px;
+    color: $body-color;
+  }
+
+  &-subtitle-wrapper {
+    margin-bottom: 1.5rem;
+    padding-top: 32px;
+    padding-bottom: 18px;
+    background-color: $section-bg;
+
+    p {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+  }
 }
 
 .instructions-section {
@@ -217,10 +512,30 @@ p {
     padding: 34px 22px;
     background: url(img/svg/instructions-dots-bg.svg) no-repeat right top;
 
+    @include media-breakpoint-down(md) {
+      flex-direction: column;
+    }
+
+    @include media-breakpoint-down(xs) {
+      padding: 0;
+      background: none;
+    }
+
     .card {
       margin-left: 10px;
       margin-right: 10px;
       border: none;
+
+      @include media-breakpoint-down(xs) {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      & + .card {
+        @include media-breakpoint-down(md) {
+          margin-top: 15px;
+        }
+      }
 
       &-title {
         text-align: center;
@@ -233,21 +548,13 @@ p {
         font-size: 18px;
         font-weight: 500;
         border-bottom: 1px solid rgba(47, 73, 140, 0.2);
-      }
 
-      .link-arrow {
-        display: flex;
-        align-items: center;
-        flex-wrap: nowrap;
-        text-decoration: none;
-
-        span {
-          margin-right: auto;
+        @include media-breakpoint-down(lg) {
+          font-size: 16px;
         }
 
-        svg {
-          flex-shrink: 0;
-          margin-left: 8px;
+        @include media-breakpoint-down(xs) {
+          font-size: 14px;
         }
       }
     }
@@ -255,50 +562,80 @@ p {
 }
 
 .ourwork-section {
-  .card {
-    border-color: #de9fae;
-
-    &:hover,
-    &:focus {
-      text-decoration: none;
-      border-color: $primary;
+  .ourwork-desktop {
+    @include media-breakpoint-down(sm) {
+      display: none;
     }
 
-    &.active {
-      background-color: $light-primary;
-      border-color: $light-primary;
+    .card {
+      border-color: #de9fae;
 
-      &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        right: -12px;
-        display: block;
-        width: 24px;
-        height: 24px;
-        margin-top: -12px;
+      &:hover,
+      &:focus {
+        text-decoration: none;
+        border-color: $primary;
+      }
+
+      &.active {
         background-color: $light-primary;
-        border-top-right-radius: 10px;
-        transform: rotate(45deg);
+        border-color: $light-primary;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          right: -12px;
+          display: block;
+          width: 24px;
+          height: 24px;
+          margin-top: -12px;
+          background-color: $light-primary;
+          border-top-right-radius: 10px;
+          transform: rotate(45deg);
+        }
+      }
+
+      &-body {
+        padding: 24px;
+      }
+
+      p {
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 500;
       }
     }
+  }
 
+  .ourwork-mobile {
+    display: none;
+
+    @include media-breakpoint-down(sm) {
+      display: block;
+    }
+
+    .card {
+      border-color: #97a4c6;
+
+      &-body {
+        padding: 16px 16px 12px;
+      }
+
+      p {
+        margin-bottom: 10px;
+        font-size: 15px;
+      }
+    }
+  }
+
+  .card {
     & + .card {
       margin-top: 1.8rem;
     }
 
-    &-body {
-      padding: 24px;
-    }
 
     &-title {
       color: $body-color;
-    }
-
-    p {
-      margin-bottom: 0;
-      font-size: 14px;
-      font-weight: 500;
     }
   }
 }
@@ -309,22 +646,48 @@ p {
 
   .container {
     background: url(img/svg/about-dots-bg.svg) no-repeat right top;
+
+    @include media-breakpoint-down(sm) {
+      background: none;
+    }
   }
 
   &-row {
     align-items: center;
     padding: 10px 7px;
+
+    @include media-breakpoint-down(sm) {
+      padding: 0;
+    }
+  }
+
+  &-title {
+    color: #fff;
   }
 
   &-subtitle {
     margin-bottom: 2rem;
     font-size: 22px;
+
+    @include media-breakpoint-down(sm) {
+      font-size: 18px;
+      font-weight: 500;
+    }
   }
 
   .statistic-card {
     background-color: #501b3c;
     box-shadow: -6px 6px 24px rgba(80, 27, 60, .5);
     border-radius: 18px;
+    transition: box-shadow .3s;
+
+    &:hover {
+      box-shadow: -6px 6px 30px rgba(80, 27, 60, .8);
+    }
+
+    @include media-breakpoint-down(md) {
+      margin-top: 50px;
+    }
   }
 
   .statistic-item {
@@ -336,10 +699,19 @@ p {
     &-title {
       margin-bottom: 5px;
       font-size: 56px;
+      color: #fff;
+
+      @include media-breakpoint-down(lg) {
+        font-size: 40px;
+      }
     }
 
     &-subtitle {
       font-size: 22px;
+
+      @include media-breakpoint-down(lg) {
+        font-size: 18px;
+      }
     }
   }
 }
@@ -347,47 +719,102 @@ p {
 .donate-section {
   background-color: $section-bg;
 
-  .donate-text-item {
-    margin-bottom: 3rem;
-  }
+  .donate-text-item + .donate-text-item{
+    margin-top: 3rem;
 
-  .donate-text-title {
-    font-weight: 500;
+    @include media-breakpoint-down(xs) {
+      margin-top: 1.5rem;
+    }
   }
 
   .donate-text-desc {
     font-size: 18px;
+
+    @include media-breakpoint-down(xs) {
+      font-size: 14px;
+    }
+  }
+}
+
+// Footer
+.footer-contacts {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #dfe4ed;
+}
+
+.socials-wrapper {
+  margin-bottom: 4rem;
+
+  @include media-breakpoint-down(xs) {
+    margin-bottom: 2rem;
+  }
+}
+
+body.nav-toggled .socials-wrapper {
+  @include media-breakpoint-down(xs) {
+    position: fixed;
+    left: 15px;
+    right: 15px;
+    bottom: 0;
+    z-index: 10000;
+    margin-bottom: 0;
+
+    .socials-title {
+      text-align: center;
+    }
   }
 }
 
 .socials-title {
   margin-bottom: 2rem;
   font-weight: 500;
+
+  @include media-breakpoint-down(xs) {
+    margin-bottom: 1rem;
+  }
 }
 
 .socials-list {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 4rem;
+
+  @include media-breakpoint-down(xs) {
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
 
   .social-item {
     text-align: center;
 
     &:hover {
       text-decoration: none;
+
+      svg {
+        transform: scale(1.06);
+      }
     }
 
     & + .social-item {
       margin-left: 1rem;
+
+      @include media-breakpoint-down(xs) {
+        margin-left: 10px;
+      }
     }
 
     svg {
       margin-bottom: 1rem;
+      transition: transform .2s;
     }
 
     span {
       display: block;
       font-size: 14px;
+
+      @include media-breakpoint-down(xs) {
+        display: none;
+      }
     }
   }
 }
@@ -399,19 +826,138 @@ p {
 
   &:hover {
     text-decoration: none;
+
+    svg {
+      transform: scale(1.06);
+    }
+  }
+
+  svg {
+    transition: transform .2s;
   }
 }
 
 .contacts-item {
   display: flex;
-  margin-bottom: 2rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
   font-size: 24px;
   font-weight: 300;
+
+  @include media-breakpoint-down(lg) {
+    font-size: 20px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    font-size: 16px;
+  }
 
   &-key {
     flex-shrink: 0;
     flex-basis: 200px;
     margin-right: 10px;
     white-space: nowrap;
+
+    @include media-breakpoint-down(sm) {
+      flex-basis: 150px;
+    }
+
+    @include media-breakpoint-down(xs) {
+      flex-basis: 130px;
+    }
+  }
+
+  &-phone {
+    white-space: nowrap;
+
+    @include media-breakpoint-down(xs) {
+      display: block;
+      margin-top: 1rem;
+    }
+  }
+}
+
+.footer-brand {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+
+  @include media-breakpoint-down(md) {
+    font-size: 28px;
+  }
+
+  @include media-breakpoint-down(xs) {
+    font-size: 24px;
+  }
+}
+
+.site-description {
+  margin-bottom: 0;
+  font-size: 20px;
+  font-weight: 500;
+
+  @include media-breakpoint-down(md) {
+    font-size: 18px;
+  }
+
+  @include media-breakpoint-down(xs) {
+    font-size: 16px;
+  }
+}
+
+.footer-bg {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 2rem;
+  text-align: right;
+
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+}
+
+.accordion {
+  &-title {
+    margin-bottom: 18px;
+    padding-left: 20px;
+  }
+
+  .card {
+    border: none;
+    border-radius: 0;
+
+    &-header {
+      z-index: 1;
+      padding-left: 16px;
+      font-size: 20px;
+      background-color: rgba(249, 249, 251, .9);
+      border: none;
+      border-left: 4px solid $primary;
+      border-radius: 0;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, .05);
+
+      &.collapsed {
+        background-color: transparent;
+        border-left-color: transparent;
+
+        svg {
+          display: none;
+        }
+      }
+    }
+
+    &-body {
+      padding: 20px;
+      background-color: rgba(248, 248, 250, .7);
+    }
+
+    ul {
+      margin-bottom: 0;
+      font-size: 14px;
+
+      li + li {
+        margin-top: 12px;
+      }
+    }
   }
 }

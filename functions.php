@@ -45,6 +45,24 @@ function monitor_pacienta_theme_content_width() {
 add_action( 'after_setup_theme', 'monitor_pacienta_theme_content_width', 0 );
 
 /**
+ * Register widget area.
+ *
+ * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
+ */
+function monitor_pacienta_theme_widgets_init() {
+	register_sidebar( array(
+		'name'          => esc_html__( 'Sidebar', 'monitor-pacienta-theme' ),
+		'id'            => 'sidebar-1',
+		'description'   => esc_html__( 'Add widgets here.', 'monitor-pacienta-theme' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+}
+add_action( 'widgets_init', 'monitor_pacienta_theme_widgets_init' );
+
+/**
  * Register Google Fonts
  */
 function monitor_pacienta_theme_fonts_url() {
@@ -64,7 +82,8 @@ function monitor_pacienta_theme_scripts() {
   wp_enqueue_style( 'monitor-pacienta-theme-fonts', monitor_pacienta_theme_fonts_url() );
 
   wp_deregister_script( 'jquery' );
-  wp_register_script( 'jquery', '//code.jquery.com/jquery-3.3.1.slim.min.js', false, null, true );
+  // wp_register_script( 'jquery', '//code.jquery.com/jquery-3.3.1.slim.min.js', false, null, true );
+  wp_register_script( 'jquery', '//code.jquery.com/jquery-3.4.1.min.js', false, null, true );
   wp_enqueue_script( 'jquery' );
 
   wp_register_script( 'bootstrap-js', '//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js', array('jquery'), null, true );
@@ -90,7 +109,7 @@ function monitor_pacienta_theme_scripts() {
         cssEase: "linear",
         responsive: [
           {
-            breakpoint: 600,
+            breakpoint: 576,
             settings: {
               arrows: true
             }
@@ -192,6 +211,7 @@ function register_post_types(){
     'menu_position'       => 20,
     'menu_icon'           => 'dashicons-book-alt',
     'taxonomies'          => [ 'instructions_category' ],
+    'show_in_rest'        => true,
     'supports'            => [ 'title', 'editor' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
   ) );
 }

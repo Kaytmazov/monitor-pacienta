@@ -28,12 +28,6 @@
 ## General Structure
 --------------------------------------------------------------*/
 
-.entry-content > * {
-  margin: 36px auto;
-  max-width: 580px;
-  padding-left: 14px;
-  padding-right: 14px;
-}
 
 .entry-content > .alignwide {
   max-width: 1070px;
@@ -42,13 +36,6 @@
 .entry-content > .alignfull {
   margin: 1.5em 0;
   max-width: 100%;
-}
-
-@media screen and (min-width: 608px) {
-  .entry-content > * {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
 }
 
 /*--------------------------------------------------------------
@@ -179,16 +166,41 @@ ul.wp-block-latest-posts.is-grid.alignwide {
 /*--------------------------------------------------------------
 # List
 --------------------------------------------------------------*/
-
-.entry-content ul,
-.entry-content ol {
-  margin: 1.5em auto;
-  max-width: 580px;
-  list-style-position: outside;
+.entry-content ul {
+  padding-left: 3rem;
+  font-size: 24px;
+  font-weight: 500;
+  list-style: none;
 }
 
-.entry-content li {
-  margin-left: 2.5em;
+@media (max-width: 575.98px) {
+  .entry-content ul {
+    padding-left: 1.5rem;
+    font-size: 14px;
+  }
+}
+
+.entry-content ul li {
+  margin-bottom: 22px;
+}
+
+.entry-content ul li::before {
+  content: "\2022";
+  color: #ff8b03;
+  display: inline-block;
+  width: 3rem;
+  margin-left: -3rem;
+}
+
+@media (max-width: 575.98px) {
+  .entry-content ul li::before {
+    width: 1.5rem;
+    margin-left: -1.5rem;
+  }
+}
+
+.entry-content ol {
+  list-style-position: outside;
 }
 
 .entry-content ul ul,
@@ -226,33 +238,24 @@ ul.wp-block-latest-posts.is-grid.alignwide {
 --------------------------------------------------------------*/
 
 .wp-block-quote {
-  margin-left: 14px;
-  margin-right: 14px;
-  padding: 0;
+  padding: 1.7rem 2rem;
+  font-weight: 500;
+  border: 1px solid #de9fae;
+  border-radius: 8px;
 }
 
-.wp-block-quote > * {
-  margin-left: 1rem;
-}
-
-.wp-block-quote.is-large, 
+.wp-block-quote.is-large,
 .wp-block-quote.is-style-large {
   margin: 36px auto;
   padding: 0;
 }
 
-.wp-block-quote.is-large cite, 
-.wp-block-quote.is-large footer, 
-.wp-block-quote.is-style-large cite, 
+.wp-block-quote.is-large cite,
+.wp-block-quote.is-large footer,
+.wp-block-quote.is-style-large cite,
 .wp-block-quote.is-style-large footer {
   font-size: 13px;
   font-size: 0.8125rem;
-}
-
-@media screen and (min-width: 644px) {
-  .wp-block-quote {
-    margin: 36px auto;
-  }
 }
 
 /*--------------------------------------------------------------

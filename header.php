@@ -34,6 +34,11 @@
   <header id="masthead" class="site-header">
     <div class="container">
       <nav id="site-navigation" class="main-navigation">
+        <button class="btn btn-link btn-menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+          <svg class="icon-burger" width="20" height="14"><use xlink:href="#icon-burger"></use></svg>
+          <svg class="icon-close" width="14" height="14"><use xlink:href="#icon-close"></use></svg>
+        </button>
+
         <?php
         if ( is_front_page() && is_home() ) : ?>
           <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><h1 class="site-title"><?php bloginfo( 'name' ); ?></h1></a>
@@ -42,7 +47,6 @@
         <?php
         endif; ?>
 
-        <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'monitor-pacienta-theme' ); ?></button>
         <?php
           wp_nav_menu( array(
             'theme_location' => 'menu-1',
@@ -62,13 +66,22 @@
               </button>
             <?php
             else: ?>
-              Ваш регион: <?php echo $region; ?>?<br>
-              <button class="btn btn-primary btn-sm btn-region-confirm" id="regionComfirmBtn" type="button" data-region="<?php echo $region ?>">Да</button>
-              <button class="btn btn-secondary btn-sm" type="button" data-toggle="modal" data-target="#changeRegionModal">Выбрать другой</button>
+              <button class="btn btn-link btn-region" type="button" data-toggle="modal" data-target="#changeRegionModal">
+                <svg width="23" height="23"><use xlink:href="#icon-send"></use></svg>
+                <span><?php echo $region; ?></span>
+              </button>
+
+              <div class="region-dropdown">
+                <h5 class='region-dropdown-title'>Ваш регион - <?php echo $region; ?>?</h5>
+                <div class="text-nowrap">
+                  <button class="btn btn-primary btn-sm btn-region-confirm mr-3" id="regionComfirmBtn" type="button" data-region="<?php echo $region ?>">Да, верно</button>
+                  <button class="btn btn-link btn-sm" type="button" data-toggle="modal" data-target="#changeRegionModal">Выбрать другой</button>
+                </div>
+              </div>
             <?php
             endif; ?>
           </div>
-          <button class="btn btn-primary btn-help" type="button">Помочь проекту</button>
+          <a class="btn btn-primary btn-help" href="#donate-section">Помочь<span> проекту</span></a>
         </div>
       </nav><!-- #site-navigation -->
     </div>

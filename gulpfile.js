@@ -4,6 +4,8 @@ const { src, dest, series, parallel, watch } = require('gulp');
 const plumber = require('gulp-plumber');
 const sass = require('gulp-sass');
 const postcss = require('gulp-postcss');
+const csso = require('gulp-csso');
+const cssbeautify = require('gulp-cssbeautify');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('autoprefixer');
 const imagemin = require('gulp-imagemin');
@@ -45,6 +47,9 @@ function css() {
     .pipe(postcss([
       autoprefixer()
     ]))
+    // .pipe(csso({
+    //   forceMediaMerge: true
+    // }))
     .pipe(sourcemaps.write('.'))
     .pipe(dest('./'))
     .pipe(browserSync.stream());
@@ -63,7 +68,11 @@ function images() {
 // SVG sprite
 function svgSprite() {
   return src(folder.assets + 'img/svg-sprite/*.svg')
-    .pipe(svgmin())
+    .pipe(svgmin({
+      plugins: [{
+        removeViewBox: false
+      }]
+    }))
     .pipe(svgstore({
       inlineSvg: true
     }))
@@ -75,7 +84,11 @@ function svgSprite() {
 // SVG min
 function svgMin() {
   return src(folder.assets + 'img/svg-min/*.svg')
-    .pipe(svgmin())
+    .pipe(svgmin({
+      plugins: [{
+        removeViewBox: false
+      }]
+    }))
     .pipe(dest('./img/svg'));
 }
 

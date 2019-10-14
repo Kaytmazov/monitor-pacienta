@@ -180,7 +180,7 @@ blockquote {
   color: #fff;
 }
 
-.section {
+.main-section {
   padding-top: 50px;
   padding-bottom: 50px;
 
@@ -194,6 +194,7 @@ blockquote {
   padding-top: 90px;
   padding-bottom: 130px;
   background-color: #fdfdfd;
+  overflow: hidden;
 
   @include media-breakpoint-down(md) {
     padding-top: 50px;
@@ -488,6 +489,10 @@ blockquote {
     margin-bottom: 3rem;
     font-size: 24px;
     color: $body-color;
+
+    @include media-breakpoint-down(md) {
+      font-size: 20px;
+    }
   }
 
   &-subtitle-wrapper {
@@ -501,6 +506,10 @@ blockquote {
       font-size: 22px;
       font-weight: 500;
       line-height: 1.4;
+
+      @include media-breakpoint-down(md) {
+        font-size: 16px;
+      }
     }
   }
 }
@@ -558,6 +567,19 @@ blockquote {
         }
       }
     }
+  }
+}
+
+.mobile-categories {
+  margin-bottom: 2rem;
+  text-align: center;
+
+  .btn {
+    margin-bottom: 5px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    display: none;
   }
 }
 
@@ -718,6 +740,22 @@ blockquote {
 
 .donate-section {
   background-color: $section-bg;
+
+  .donate-wrapper {
+    @include media-breakpoint-up(lg) {
+      padding-right: 1.8rem;
+      padding-bottom: 2rem;
+      background: url(img/svg/donate-dots-bg.svg) no-repeat right bottom;
+    }
+
+    .leyka-pf {
+      margin-top: 0;
+
+      @include media-breakpoint-down(lg) {
+        margin-bottom: 3rem;
+      }
+    }
+  }
 
   .donate-text-item + .donate-text-item{
     margin-top: 3rem;

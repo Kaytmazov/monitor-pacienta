@@ -4,16 +4,6 @@
   background: #fff url('./ajax-loader.gif') center center no-repeat;
 }
 
-/* Icons */
-@font-face {
-  font-family: 'slick';
-  font-weight: normal;
-  font-style: normal;
-
-  src: url('./fonts/slick.eot');
-  src: url('./fonts/slick.eot?#iefix') format('embedded-opentype'), url('./fonts/slick.woff') format('woff'), url('./fonts/slick.ttf') format('truetype'), url('./fonts/slick.svg#slick') format('svg');
-}
-
 .slick-track:focus,
 .slick-slide:focus {
   outline: none;
@@ -30,9 +20,9 @@
 
   display: block;
 
-  width: 20px;
-  height: 20px;
-  padding: 0;
+  width: 60px;
+  height: 100px;
+  padding: 15px;
   -webkit-transform: translate(0, -50%);
   -ms-transform: translate(0, -50%);
   transform: translate(0, -50%);
@@ -42,74 +32,30 @@
   color: transparent;
   border: none;
   outline: none;
-  background: transparent;
+  background: #F2F4F7;
 }
+.slick-prev {
+  left: -30px;
+  text-align: right;
+  border-radius: 0 50% 50% 0;
+}
+
+.slick-next {
+  right: -30px;
+  text-align: left;
+  border-radius: 50% 0 0 50%;
+}
+
 .slick-prev:hover,
-.slick-prev:focus,
+.slick-prev:active,
 .slick-next:hover,
-.slick-next:focus {
-  color: transparent;
+.slick-next:active {
   outline: none;
-  background: transparent;
+  background: #e9edf3;
 }
-.slick-prev:hover:before,
-.slick-prev:focus:before,
-.slick-next:hover:before,
-.slick-next:focus:before {
-  opacity: 1;
-}
-.slick-prev.slick-disabled:before,
-.slick-next.slick-disabled:before {
+.slick-prev.slick-disabled svg,
+.slick-next.slick-disabled svg {
   opacity: .25;
-}
-
-.slick-prev:before,
-.slick-next:before {
-  font-family: 'slick';
-  font-size: 20px;
-  line-height: 1;
-
-  opacity: .75;
-  color: white;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.slick-prev
-{
-  left: 0;
-}
-[dir='rtl'] .slick-prev
-{
-  right: -25px;
-  left: auto;
-}
-.slick-prev:before
-{
-  content: '←';
-}
-[dir='rtl'] .slick-prev:before
-{
-  content: '→';
-}
-
-.slick-next
-{
-  right: 0;
-}
-[dir='rtl'] .slick-next
-{
-  right: auto;
-  left: 0;
-}
-.slick-next:before
-{
-  content: '→';
-}
-[dir='rtl'] .slick-next:before
-{
-  content: '←';
 }
 
 /* Dots */
@@ -173,9 +119,8 @@
   color: #FD2D10;
 }
 .slick-dots li button:before {
-  font-family: 'slick';
-  font-size: 6px;
-  line-height: 16px;
+  font-size: 20px;
+  line-height: 14px;
 
   position: absolute;
   top: 0;

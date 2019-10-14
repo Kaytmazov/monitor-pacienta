@@ -10,7 +10,7 @@
  */
 
 ?>
-  <section id="donate-section" class="donate-section section">
+  <section id="donate-section" class="donate-section main-section">
     <div class="container">
       <div class="row">
         <div class="col-lg-8">
@@ -18,8 +18,12 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6"></div>
-        <div class="col-md-6">
+        <div class="col-lg-6">
+          <div class="donate-wrapper">
+            <?php echo do_shortcode('[leyka_campaign_form id="220"]'); ?>
+          </div>
+        </div>
+        <div class="col-lg-6">
           <?php
           $donate_texts = get_field('donate_texts', 5);
           foreach( $donate_texts as $donate_text ): ?>
@@ -34,7 +38,7 @@
     </div>
   </section>
 
-  <footer id="footer" class="site-footer section">
+  <footer id="footer" class="site-footer main-section">
     <?php
     $contacts_page = get_page_by_path( 'contacts' );
     $contacts_page_id = 8;

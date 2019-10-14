@@ -11,6 +11,33 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
   <div class="container">
+    <div class="mobile-categories">
+      <?php
+      foreach((get_the_terms($post->ID, 'instructions_category')) as $term) {
+        $currrent_term_ID = $term->term_id;
+      }
+
+      global $region;
+
+      $region_cat = get_term_by('name', $region, 'instructions_category');
+
+      $region_child_cats = get_terms(
+        array(
+          'taxonomy'   => 'instructions_category',
+          'hide_empty' => false,
+          'parent' 		 => $region_cat->term_id
+        )
+      ); ?>
+
+      <?php
+      foreach( $region_child_cats as $region_child_cat ) : ?>
+        <a class="btn btn-sm <?php echo ($region_child_cat->term_id == $currrent_term_ID) ? 'btn-default' : ''; ?>" href="<?php echo esc_url( get_term_link( $region_child_cat ) ) ?>">
+          <?php echo $region_child_cat->name; ?>
+        </a>
+      <?php
+      endforeach; ?>
+    </div>
+
     <div class="row">
       <header class="entry-header col-lg-8">
         <?php
@@ -30,7 +57,7 @@
 
   <div class="instruction-page-subtitle-wrapper">
     <div class="container">
-      <p>Пошаговая инструкция как надо дейсвовать в подобной <br>ситуаций</p>
+      <p>Пошаговая инструкция как надо дейсвовать в подобной ситуации</p>
     </div>
   </div>
 

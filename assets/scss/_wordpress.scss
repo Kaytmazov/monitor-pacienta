@@ -324,13 +324,13 @@ body.nav-toggled .region-dropdown {
 .site-main .post-navigation {
   border-bottom: 1px solid #e2e4e7;
   margin: 0 auto 60px;
-  max-width: 580px;
   overflow: hidden;
   padding-bottom: 60px;
 }
 
 .nav-links {
   display: flex;
+  font-weight: bold;
 }
 
 .comment-navigation .nav-previous,
@@ -437,6 +437,10 @@ body.nav-toggled .region-dropdown {
 --------------------------------------------------------------*/
 .widget-area {
   margin-bottom: 60px;
+
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
 }
 
 .widget {

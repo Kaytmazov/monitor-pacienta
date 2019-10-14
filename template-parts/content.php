@@ -55,5 +55,5 @@
     <footer class="entry-footer">
       <?php monitor_pacienta_theme_entry_footer(); ?>
     </footer><!-- .entry-footer -->
-  </div>
+  </div><!-- .container -->
 </article><!-- #post-<?php the_ID(); ?> -->

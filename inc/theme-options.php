@@ -25,7 +25,6 @@ function monitor_pacienta_theme_options() {
 	register_setting( 'monitor-pacienta-theme-options', 'monitor-pacienta-theme-align-wide', array( 'default' => 1 ) );
 	register_setting( 'monitor-pacienta-theme-options', 'monitor-pacienta-theme-wp-block-styles', array( 'default' => 1 ) );
 	register_setting( 'monitor-pacienta-theme-options', 'monitor-pacienta-theme-editor-color-palette', array( 'default' => 1 ) );
-	register_setting( 'monitor-pacienta-theme-options', 'monitor-pacienta-theme-dark-mode' );
 	register_setting( 'monitor-pacienta-theme-options', 'monitor-pacienta-theme-responsive-embeds', array( 'default' => 1 ) );
 }
 
@@ -56,15 +55,6 @@ function monitor_pacienta_theme_options_page() { ?>
 							<input name="monitor-pacienta-theme-editor-color-palette" type="checkbox" value="1" <?php checked( '1', get_option( 'monitor-pacienta-theme-editor-color-palette' ) ); ?> />
 							<?php _e( 'Enable a custom theme color palette.', 'monitor-pacienta-theme' ); ?>
 							(<a href="https://developer.wordpress.org/block-editor/developers/themes/theme-support/#block-color-palettes"><code>editor-color-palette</code></a>)
-						</label>
-					</td>
-				</tr>
-				<tr valign="top">
-					<td>
-						<label>
-							<input name="monitor-pacienta-theme-dark-mode" type="checkbox" value="1" <?php checked( '1', get_option( 'monitor-pacienta-theme-dark-mode' ) ); ?> />
-							<?php _e( 'Enable a dark theme style.', 'monitor-pacienta-theme' ); ?>
-							(<a href="https://developer.wordpress.org/block-editor/developers/themes/theme-support/#dark-backgrounds"><code>dark-editor-style</code></a>)
 						</label>
 					</td>
 				</tr>
@@ -140,34 +130,6 @@ function monitor_pacienta_theme_enable_editor_color_palette() {
 	}
 }
 add_action( 'after_setup_theme', 'monitor_pacienta_theme_enable_editor_color_palette' );
-
-
-/**
- * Enable dark mode if monitor-pacienta-theme-dark-mode setting is active.
- */
-function monitor_pacienta_theme_enable_dark_mode() {
-	if ( get_option( 'monitor-pacienta-theme-dark-mode' ) == 1 ) {
-
-		// Add support for editor styles.
-		add_theme_support( 'editor-styles' );
-		add_editor_style( 'style-editor-dark.css' );
-
-		// Add support for dark styles.
-		add_theme_support( 'dark-editor-style' );
-	}
-}
-add_action( 'after_setup_theme', 'monitor_pacienta_theme_enable_dark_mode' );
-
-
-/**
- * Enable dark mode on the front end if monitor-pacienta-theme-dark-mode setting is active.
- */
-function monitor_pacienta_theme_enable_dark_mode_frontend_styles() {
-	if ( get_option( 'monitor-pacienta-theme-dark-mode' ) == 1 ) {
-		wp_enqueue_style( 'monitor-pacienta-themedark-style', get_template_directory_uri() . '/css/dark-mode.css' );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'monitor_pacienta_theme_enable_dark_mode_frontend_styles' );
 
 /**
  * Enable core block styles support if the monitor-pacienta-theme-wp-block-styles setting is active.

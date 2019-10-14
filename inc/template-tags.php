@@ -95,7 +95,7 @@ if ( ! function_exists( 'monitor_pacienta_theme_entry_footer' ) ) :
 				),
 				get_the_title()
 			),
-			'<span class="edit-link">',
+			'<span class="badge badge-danger edit-link">',
 			'</span>'
 		);
 	}

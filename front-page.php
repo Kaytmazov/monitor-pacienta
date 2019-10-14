@@ -78,7 +78,7 @@ get_header(); ?>
       </div><!-- .problems-list -->
     </section>
 
-    <section class="video-section section">
+    <section class="video-section main-section">
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
@@ -118,7 +118,7 @@ get_header(); ?>
       </div>
     </section>
 
-    <section class="instructions-section section">
+    <section class="instructions-section main-section">
       <?php $instructions_page = get_page_by_path( 'instructions' ); ?>
 
       <div class="container">
@@ -173,7 +173,7 @@ get_header(); ?>
       </div>
     </section>
 
-    <section class="ourwork-section section">
+    <section class="ourwork-section main-section">
       <?php $ourwork_page = get_page_by_path( 'our-work' ); ?>
 
       <div class="container">
@@ -247,11 +247,11 @@ get_header(); ?>
           </div>
         <?php
         wp_reset_postdata();
-        endif;?>
+        endif; ?>
       </div>
     </section>
 
-    <section class="about-section section">
+    <section class="about-section main-section">
       <div class="container container-lg">
         <div class="about-section-row row">
           <div class="col-lg-7">

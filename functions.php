@@ -22,9 +22,6 @@ if ( ! function_exists( 'monitor_pacienta_theme_setup' ) ) :
      * to output valid HTML5.
      */
     add_theme_support( 'html5', array(
-      'search-form',
-      'comment-form',
-      'comment-list',
       'gallery',
       'caption',
     ) );
@@ -104,6 +101,8 @@ function monitor_pacienta_theme_scripts() {
       jQuery(".intro-slider").slick({
         dots: true,
         arrows: false,
+        prevArrow: "<button type=\"button\" class=\"slick-prev\"><svg width=\"6\" height=\"11\"><use xlink:href=\"#icon-prev\"></use></svg></button>",
+        nextArrow: "<button type=\"button\" class=\"slick-next\"><svg width=\"6\" height=\"11\"><use xlink:href=\"#icon-next\"></use></svg></button>",
         infinite: true,
         speed: 500,
         cssEase: "linear",
@@ -154,6 +153,25 @@ require get_template_directory() . '/inc/theme-options.php';
  * Отключаем Toolbar на сайте
  */
 add_filter('show_admin_bar', '__return_false');
+
+/**
+ * Удаляем слово "Рубрика" в категориях
+ */
+add_filter( 'get_the_archive_title', function ( $title ) {
+  if( is_category() ) {
+    $title = single_cat_title( '', false );
+  }
+  return $title;
+});
+
+/**
+ * Создаем ссылку "читать дальше" на конце excerpt
+ */
+add_filter( 'excerpt_more', 'new_excerpt_more' );
+function new_excerpt_more( $more ){
+	global $post;
+	return '... <a href="'. get_permalink($post) . '">читать дальше</a>';
+}
 
 /**
  * Регистрация таксономий

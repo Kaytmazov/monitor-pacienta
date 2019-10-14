@@ -10,7 +10,7 @@ get_header(); ?>
 		<?php
 		while ( have_posts() ) : the_post(); ?>
 
-			<section class="instructions-section section">
+			<section class="instructions-section main-section">
 
         <div class="container">
           <div class="row">

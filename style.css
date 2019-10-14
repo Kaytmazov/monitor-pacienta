@@ -10600,7 +10600,6 @@ body.nav-toggled .region-dropdown {
 .site-main .post-navigation {
   border-bottom: 1px solid #e2e4e7;
   margin: 0 auto 60px;
-  max-width: 580px;
   overflow: hidden;
   padding-bottom: 60px;
 }
@@ -10609,6 +10608,7 @@ body.nav-toggled .region-dropdown {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  font-weight: bold;
 }
 
 .comment-navigation .nav-previous,
@@ -10719,6 +10719,12 @@ body.nav-toggled .region-dropdown {
 --------------------------------------------------------------*/
 .widget-area {
   margin-bottom: 60px;
+}
+
+@media (max-width: 991.98px) {
+  .widget-area {
+    display: none;
+  }
 }
 
 .widget {
@@ -11127,13 +11133,13 @@ blockquote p:last-of-type {
   color: #fff;
 }
 
-.section {
+.main-section {
   padding-top: 50px;
   padding-bottom: 50px;
 }
 
 @media (max-width: 575.98px) {
-  .section {
+  .main-section {
     padding-top: 30px;
     padding-bottom: 30px;
   }
@@ -11143,6 +11149,7 @@ blockquote p:last-of-type {
   padding-top: 90px;
   padding-bottom: 130px;
   background-color: #fdfdfd;
+  overflow: hidden;
 }
 
 @media (max-width: 991.98px) {
@@ -11506,6 +11513,12 @@ blockquote p:last-of-type {
   color: #150045;
 }
 
+@media (max-width: 991.98px) {
+  .instruction-page-title {
+    font-size: 20px;
+  }
+}
+
 .instruction-page-subtitle-wrapper {
   margin-bottom: 1.5rem;
   padding-top: 32px;
@@ -11518,6 +11531,12 @@ blockquote p:last-of-type {
   font-size: 22px;
   font-weight: 500;
   line-height: 1.4;
+}
+
+@media (max-width: 991.98px) {
+  .instruction-page-subtitle-wrapper p {
+    font-size: 16px;
+  }
 }
 
 .instructions-section {
@@ -11586,6 +11605,21 @@ blockquote p:last-of-type {
 @media (max-width: 575.98px) {
   .instructions-section .card-deck .card li {
     font-size: 14px;
+  }
+}
+
+.mobile-categories {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.mobile-categories .btn {
+  margin-bottom: 5px;
+}
+
+@media (min-width: 992px) {
+  .mobile-categories {
+    display: none;
   }
 }
 
@@ -11761,6 +11795,24 @@ blockquote p:last-of-type {
 
 .donate-section {
   background-color: #f2f4f7;
+}
+
+@media (min-width: 992px) {
+  .donate-section .donate-wrapper {
+    padding-right: 1.8rem;
+    padding-bottom: 2rem;
+    background: url(img/svg/donate-dots-bg.svg) no-repeat right bottom;
+  }
+}
+
+.donate-section .donate-wrapper .leyka-pf {
+  margin-top: 0;
+}
+
+@media (max-width: 1199.98px) {
+  .donate-section .donate-wrapper .leyka-pf {
+    margin-bottom: 3rem;
+  }
 }
 
 .donate-section .donate-text-item + .donate-text-item {

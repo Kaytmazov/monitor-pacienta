@@ -118,7 +118,10 @@ function monitor_pacienta_theme_scripts() {
     );
   }
 
-  wp_enqueue_script( 'scripts-js', get_template_directory_uri() . '/js/scripts.js', array(), null, true );
+  wp_register_script( 'cookie-js', get_template_directory_uri() . '/libs/js.cookie.min.js', array(), null, true );
+  wp_enqueue_script( 'cookie-js' );
+
+  wp_enqueue_script( 'scripts-js', get_template_directory_uri() . '/js/scripts.js', array('cookie-js'), null, true );
 }
 add_action( 'wp_enqueue_scripts', 'monitor_pacienta_theme_scripts' );
 
@@ -200,6 +203,7 @@ function create_taxonomy(){
     ],
     'public'                => true,
     'hierarchical'        	=> true,
+    'show_in_rest'          => true
   ] );
 }
 
@@ -272,11 +276,11 @@ function tsm_convert_id_to_term_in_query($query) {
 /**
  * Предотвращение поднятия на верх выбранного категория
  */
-add_filter('wp_terms_checklist_args', 'wp_terms_checklist_args');
-function wp_terms_checklist_args($args) {
-  $args['checked_ontop'] = false;
-  return $args;
-}
+// add_filter('wp_terms_checklist_args', 'wp_terms_checklist_args');
+// function wp_terms_checklist_args($args) {
+//   $args['checked_ontop'] = false;
+//   return $args;
+// }
 
 /**
  * Определение региона

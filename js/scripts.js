@@ -1,18 +1,10 @@
 (function() {
-  function setCookie(name, value, days2expire, path) {
-    var date = new Date();
-    date.setTime(date.getTime() + (days2expire * 24 * 60 * 60 * 1000));
-    var expires = date.toUTCString();
-    document.cookie = name + '=' + value + ';' +
-                     'expires=' + expires + ';' +
-                     'path=' + path + ';';
-  };
-
   var regionComfirmBtns = document.querySelectorAll('.btn-region-confirm');
 
   onComfirmRegionBtnClick = function(evt) {
     evt.preventDefault();
-    setCookie('region', evt.target.dataset.region, 366, '/');
+
+    Cookies.set('region', evt.target.dataset.region, { expires: 366 });
     location.reload();
   };
 
@@ -41,11 +33,12 @@
     }
   };
 
-  // Скролл при клике на кнопку "Помочь проекту"
-  jQuery('.btn-help').click(function() {
-    jQuery('html,body').stop().animate({ scrollTop: jQuery(this.hash).offset().top - 100 }, 800);
-  });
 
+  // Плавный скролл к якорю при клике
+  jQuery('body').on('click', '[href*="#"]', function(evt){
+    jQuery('html,body').stop().animate({ scrollTop: jQuery(this.hash).offset().top - 100 }, 800);
+    evt.preventDefault();
+  });
 
   // Остановить видео при закрытии модального окна
   jQuery('#videoModal').on('hide.bs.modal', function (evt) {

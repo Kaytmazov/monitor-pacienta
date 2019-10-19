@@ -8,6 +8,13 @@ body {
   }
 }
 
+
+.container-lg {
+  @include media-breakpoint-up(xl) {
+    max-width: 1343px;
+  }
+}
+
 h1, h2 {
   margin-bottom: 2rem;
   color: $primary;
@@ -191,16 +198,23 @@ blockquote {
 }
 
 .intro {
+  min-height: calc(100vh - 100px);
   padding-top: 90px;
   padding-bottom: 130px;
   background-color: #fdfdfd;
   overflow: hidden;
 
+  @include media-breakpoint-down(lg) {
+    min-height: calc(100vh - 80px);
+  }
+
   @include media-breakpoint-down(md) {
+    min-height: calc(100vh - 68px);
     padding-top: 50px;
   }
 
   @include media-breakpoint-down(sm) {
+    min-height: auto;
     padding-bottom: 50px;
   }
 
@@ -402,6 +416,10 @@ blockquote {
     margin-bottom: 0;
     font-weight: 500;
     white-space: nowrap;
+
+    .link-primary {
+      white-space: nowrap;
+    }
   }
 }
 
@@ -589,13 +607,26 @@ blockquote {
       display: none;
     }
 
+    @include media-breakpoint-up(lg) {
+      .ourwork-tabs {
+        flex: 0 0 430px;
+        max-width: 430px;
+      }
+
+      .ourwork-content {
+        margin-left: 70px;
+      }
+    }
+
     .card {
+      text-align: left;
       border-color: #de9fae;
 
       &:hover,
       &:focus {
         text-decoration: none;
         border-color: $primary;
+        outline: none;
       }
 
       &.active {
@@ -739,6 +770,7 @@ blockquote {
 }
 
 .donate-section {
+  display: none;
   background-color: $section-bg;
 
   .donate-wrapper {
@@ -815,9 +847,9 @@ body.nav-toggled .socials-wrapper {
 
 .socials-list {
   display: flex;
-  justify-content: space-between;
 
   @include media-breakpoint-down(xs) {
+    justify-content: space-between;
     overflow-y: hidden;
     overflow-x: auto;
   }
@@ -834,7 +866,7 @@ body.nav-toggled .socials-wrapper {
     }
 
     & + .social-item {
-      margin-left: 1rem;
+      margin-left: 3rem;
 
       @include media-breakpoint-down(xs) {
         margin-left: 10px;
@@ -946,7 +978,7 @@ body.nav-toggled .socials-wrapper {
   display: flex;
   align-items: center;
   height: 100%;
-  padding-left: 2rem;
+  padding-left: 4rem;
   text-align: right;
 
   @include media-breakpoint-down(md) {
@@ -996,6 +1028,21 @@ body.nav-toggled .socials-wrapper {
       li + li {
         margin-top: 12px;
       }
+    }
+  }
+}
+
+.about-page-banner {
+  padding-top: 52px;
+  padding-bottom: 38px;
+  background-color: #f2f4f7;
+
+  h3 {
+    max-width: 70%;
+    margin-bottom: 0;
+
+    @include media-breakpoint-down(sm) {
+      max-width: none;
     }
   }
 }

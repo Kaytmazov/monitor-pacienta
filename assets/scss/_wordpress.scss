@@ -260,7 +260,7 @@ body.nav-toggled .region-dropdown {
       margin-bottom: 35px;
     }
 
-    &.current-menu-item a {
+    &.current-menu-item:not(.menu-item-type-custom) a {
       color: $primary;
     }
   }

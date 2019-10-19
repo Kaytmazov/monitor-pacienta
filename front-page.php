@@ -45,7 +45,7 @@ get_header(); ?>
                       </li>
                     <?php endwhile; ?>
                   </ul>
-                  <a class="btn btn-default" href="<?php echo esc_url( get_term_link( $region_child_cat ) ) ?>">Узнать больше</a>
+                  <a class="btn btn-default" href="#instructions">Узнать больше</a>
                 <?php endif; wp_reset_postdata(); ?>
               </div>
               <div class="intro-slide-image">
@@ -78,7 +78,7 @@ get_header(); ?>
       </div><!-- .problems-list -->
     </section>
 
-    <section class="video-section main-section">
+    <section id="how-we-work" class="video-section main-section">
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
@@ -118,7 +118,7 @@ get_header(); ?>
       </div>
     </section>
 
-    <section class="instructions-section main-section">
+    <section id="instructions" class="instructions-section main-section">
       <?php $instructions_page = get_page_by_path( 'instructions' ); ?>
 
       <div class="container">
@@ -173,14 +173,11 @@ get_header(); ?>
       </div>
     </section>
 
-    <section class="ourwork-section main-section">
-      <?php $ourwork_page = get_page_by_path( 'our-work' ); ?>
-
+    <section id="our-work" class="ourwork-section main-section">
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
-            <h2><?php echo $ourwork_page->post_title; ?></h2>
-            <?php echo $ourwork_page->post_content; ?>
+            <h2>Наша работа</h2>
           </div>
         </div>
 
@@ -199,12 +196,12 @@ get_header(); ?>
                 <?php
                 $i = 0;
                 while($ourwork_posts->have_posts()) : $ourwork_posts->the_post(); ?>
-                  <a class="card <?php if ($i == 0) echo 'active' ?>" id="cards-tab-<?php echo $i ?>" href="#cards-<?php echo $i ?>" data-toggle="tab" role="tab" aria-controls="cards-<?php echo $i ?>" aria-selected="<?php echo ($i == 0) ? 'true' : 'false'; ?>">
+                  <button type="button" class="btn-link card <?php if ($i == 0) echo 'active' ?>" id="cards-tab-<?php echo $i ?>" data-target="#cards-<?php echo $i ?>" data-toggle="tab" role="tab" aria-controls="cards-<?php echo $i ?>" aria-selected="<?php echo ($i == 0) ? 'true' : 'false'; ?>">
                     <div class="card-body">
                       <h6 class="card-title"><?php the_title(); ?></h6>
                       <?php the_excerpt(); ?>
                     </div>
-                  </a>
+                  </button>
                 <?php
                 $i++;
                 endwhile; ?>

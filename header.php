@@ -8,15 +8,6 @@
  *
  * @package monitor-pacienta-theme
  */
-
-  //  ::1
-  //  77.87.100.161 - Ингушетия
-  //  194.28.75.138 - КБР
-  //  185.147.95.255 - madrid
-
-
-
-  // setcookie('region', $region, time()+31500000);
 ?>
 
 <!doctype html>

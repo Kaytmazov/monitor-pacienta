@@ -14,7 +14,7 @@
     <div class="mobile-categories">
       <?php
       foreach((get_the_terms($post->ID, 'instructions_category')) as $term) {
-        $currrent_term_ID = $term->term_id;
+        $currrent_term_name = $term->name;
       }
 
       global $region;
@@ -31,7 +31,7 @@
 
       <?php
       foreach( $region_child_cats as $region_child_cat ) : ?>
-        <a class="btn btn-sm <?php echo ($region_child_cat->term_id == $currrent_term_ID) ? 'btn-default' : ''; ?>" href="<?php echo esc_url( get_term_link( $region_child_cat ) ) ?>">
+        <a class="btn btn-sm <?php echo ($region_child_cat->name == $currrent_term_name) ? 'btn-default' : ''; ?>" href="<?php echo esc_url( get_term_link( $region_child_cat ) ) ?>">
           <?php echo $region_child_cat->name; ?>
         </a>
       <?php

@@ -8,11 +8,14 @@ body {
   }
 }
 
-
 .container-lg {
   @include media-breakpoint-up(xl) {
     max-width: 1343px;
   }
+}
+
+a:focus {
+  outline: none;
 }
 
 h1, h2 {
@@ -150,7 +153,6 @@ blockquote {
   &:hover,
   &:focus {
     color: darken($primary, 8);
-    text-decoration: none;
   }
 
   span {
@@ -164,7 +166,6 @@ blockquote {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
-  text-decoration: none;
 
   span {
     margin-right: auto;
@@ -197,7 +198,54 @@ blockquote {
   }
 }
 
+.page-banner {
+  margin-bottom: 1rem;
+  padding-top: 52px;
+  padding-bottom: 38px;
+  background-color: #f2f4f7;
+}
+
+:target {
+  padding-top: 130px;
+  margin-top: -80px;
+
+  @include media-breakpoint-down(lg) {
+    padding-top: 118px;
+    margin-top: -68px;
+  }
+
+  @include media-breakpoint-down(xs) {
+    padding-top: 98px;
+  }
+}
+
+.archive {
+  .entry-content p {
+    font-size: 24px;
+
+    @include media-breakpoint-down(lg) {
+      font-size: 20px;
+    }
+
+    @include media-breakpoint-down(md) {
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+  }
+
+  .entry-footer {
+    text-align: right;
+
+    .link-primary {
+      font-size: 18px;
+    }
+  }
+}
+
 .intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   min-height: calc(100vh - 100px);
   padding-top: 90px;
   padding-bottom: 130px;
@@ -256,7 +304,7 @@ blockquote {
 
 
     &-title {
-      font-size: 48px;
+      font-size: 44px;
       white-space: nowrap;
 
       @include media-breakpoint-down(lg) {
@@ -305,10 +353,6 @@ blockquote {
         a {
           font-size: 22px;
           font-weight: 500;
-
-          &:hover {
-            text-decoration: none;
-          }
 
           @include media-breakpoint-down(lg) {
             font-size: 18px;
@@ -564,10 +608,6 @@ blockquote {
         }
       }
 
-      &-title {
-        text-align: center;
-      }
-
       li {
         margin-top: 1.5rem;
         padding-top: 10px;
@@ -624,7 +664,7 @@ blockquote {
 
       &:hover,
       &:focus {
-        text-decoration: none;
+        color: inherit;
         border-color: $primary;
         outline: none;
       }
@@ -857,12 +897,8 @@ body.nav-toggled .socials-wrapper {
   .social-item {
     text-align: center;
 
-    &:hover {
-      text-decoration: none;
-
-      svg {
-        transform: scale(1.06);
-      }
+    &:hover svg {
+      transform: scale(1.06);
     }
 
     & + .social-item {
@@ -894,12 +930,8 @@ body.nav-toggled .socials-wrapper {
   margin-right: 1rem;
   vertical-align: middle;
 
-  &:hover {
-    text-decoration: none;
-
-    svg {
-      transform: scale(1.06);
-    }
+  &:hover svg {
+    transform: scale(1.06);
   }
 
   svg {
@@ -1006,13 +1038,13 @@ body.nav-toggled .socials-wrapper {
       border-radius: 0;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, .05);
 
-      &.collapsed {
+      &:not(.current-term).collapsed {
         background-color: transparent;
         border-left-color: transparent;
+      }
 
-        svg {
-          display: none;
-        }
+      &.collapsed svg {
+        transform: rotate(-90deg);
       }
     }
 

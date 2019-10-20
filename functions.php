@@ -170,11 +170,9 @@ add_filter( 'get_the_archive_title', function ( $title ) {
 /**
  * Создаем ссылку "читать дальше" на конце excerpt
  */
-add_filter( 'excerpt_more', 'new_excerpt_more' );
-function new_excerpt_more( $more ){
-	global $post;
-	return '... <a href="'. get_permalink($post) . '">читать дальше</a>';
-}
+add_filter('excerpt_more', function($more) {
+  return '...';
+});
 
 /**
  * Регистрация таксономий

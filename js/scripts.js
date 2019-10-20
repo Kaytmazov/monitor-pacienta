@@ -36,7 +36,7 @@
 
   // Плавный скролл к якорю при клике
   jQuery('body').on('click', '[href*="#"]', function(evt){
-    jQuery('html,body').stop().animate({ scrollTop: jQuery(this.hash).offset().top - 100 }, 800);
+    jQuery('html,body').stop().animate({ scrollTop: jQuery(this.hash).offset().top - 80 }, 800);
     evt.preventDefault();
   });
 

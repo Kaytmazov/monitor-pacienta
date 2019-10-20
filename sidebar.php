@@ -30,15 +30,15 @@
     $current_post_ID = get_the_ID();
 
     foreach((get_the_terms($current_post_ID, 'instructions_category')) as $term) {
-      $currrent_term_ID = $term->term_id;
+      $currrent_term_name = $term->name;
     }
 
     $i = 0;
     foreach( $region_child_cats as $region_child_cat ) :
-      $isCurrentTerm = $region_child_cat->term_id == $currrent_term_ID; ?>
+      $isCurrentTerm = $region_child_cat->name == $currrent_term_name; ?>
 
       <div class="card">
-        <button class="btn link-arrow card-header <?php if (!$isCurrentTerm) echo 'collapsed' ?>" id="heading-<?php echo $i; ?>" type="button" data-toggle="collapse" data-target="#collapse-<?php echo $i; ?>" aria-expanded="<?php echo ($i == 0) ? 'true' : 'false'; ?>" aria-controls="collapse-<?php echo $i; ?>">
+        <button class="btn link-arrow card-header <?php echo ($isCurrentTerm) ? 'current-term' : 'collapsed'; ?>" id="heading-<?php echo $i; ?>" type="button" data-toggle="collapse" data-target="#collapse-<?php echo $i; ?>" aria-expanded="<?php echo ($i == 0) ? 'true' : 'false'; ?>" aria-controls="collapse-<?php echo $i; ?>">
           <span><?php echo $region_child_cat->name; ?></span>
           <svg width="20" height="10"><use xlink:href="#icon-accordion-arrow"></use></svg>
         </button>

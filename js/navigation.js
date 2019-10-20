@@ -30,30 +30,44 @@
 	menu.setAttribute( 'aria-expanded', 'false' );
 	if ( -1 === menu.className.indexOf( 'nav-menu' ) ) {
 		menu.className += ' nav-menu';
-	}
+  }
 
 	button.onclick = function() {
-		if ( -1 !== container.className.indexOf( 'toggled' ) ) {
-			container.className = container.className.replace( ' toggled', '' );
-			body.classList.remove('nav-toggled');
-			button.setAttribute( 'aria-expanded', 'false' );
-			menu.setAttribute( 'aria-expanded', 'false' );
-		} else {
-			container.className += ' toggled';
-			body.classList.add('nav-toggled');
-			button.setAttribute( 'aria-expanded', 'true' );
-			menu.setAttribute( 'aria-expanded', 'true' );
-		}
+		toggleMenu();
 	};
 
 	// Get all the link elements within the menu.
-	links    = menu.getElementsByTagName( 'a' );
+	links = menu.getElementsByTagName( 'a' );
+  anchorLinks = menu.querySelectorAll( '.menu-item-type-custom' );
 
 	// Each time a menu link is focused or blurred, toggle focus.
 	for ( i = 0, len = links.length; i < len; i++ ) {
 		links[i].addEventListener( 'focus', toggleFocus, true );
 		links[i].addEventListener( 'blur', toggleFocus, true );
-	}
+  }
+
+  function toggleMenu() {
+    if ( -1 !== container.className.indexOf( 'toggled' ) ) {
+			container.className = container.className.replace( ' toggled', '' );
+			body.classList.remove('nav-toggled');
+			button.setAttribute( 'aria-expanded', 'false' );
+      menu.setAttribute( 'aria-expanded', 'false' );
+
+      for ( i = 0, anLen = anchorLinks.length; i < anLen; i++ ) {
+        anchorLinks[i].removeEventListener( 'click', toggleMenu, true );
+      }
+
+		} else {
+			container.className += ' toggled';
+			body.classList.add('nav-toggled');
+			button.setAttribute( 'aria-expanded', 'true' );
+      menu.setAttribute( 'aria-expanded', 'true' );
+
+      for ( i = 0, anLen = anchorLinks.length; i < anLen; i++ ) {
+        anchorLinks[i].addEventListener( 'click', toggleMenu, true );
+      }
+		}
+  };
 
 	/**
 	 * Sets or removes .focus class on an element.
